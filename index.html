@@ -95,17 +95,17 @@
       
         <p>这几天做了很多ctf在这里我总结一下经验吧</p>
 <ol>
-<li>robots协议<br>Robots协议(也称为爬虫协议，机器人协议)，网络通过Robots协议告诉搜索引擎哪些页面可以抓取，哪些不可以抓取。想查看一个网站的robots协议直接在网址后面加上robots.txt即可<br>我们访问<a href="https://example.com/robots.txt%E5%8D%B3%E5%8F%AF%E7%9C%8B%E5%88%B0f1ag_1s_h3re.php%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E8%AF%A5%E8%B7%AF%E5%BE%84%E7%B2%98%E8%B4%B4%E5%88%B0%E7%BD%91%E5%9D%80%E5%90%8E%E9%9D%A2%E5%8D%B3%E5%8F%AF%E5%8F%91%E7%8E%B0flaghttps://example.com/f1ag_1s_h3re.php">https://example.com/robots.txt即可看到f1ag_1s_h3re.php文件，将该路径粘贴到网址后面即可发现flaghttps://example.com/f1ag_1s_h3re.php</a><br><img src="https://img-blog.csdnimg.cn/de277004ba4a45d6abf269227dde52a9.png" alt="avatar"></li>
+<li>robots协议<br>Robots协议(也称为爬虫协议，机器人协议)，网络通过Robots协议告诉搜索引擎哪些页面可以抓取，哪些不可以抓取。想查看一个网站的robots协议直接在网址后面加上robots.txt即可<br>我们访问<a href="https://example.com/robots.txt%E5%8D%B3%E5%8F%AF%E7%9C%8B%E5%88%B0f1ag_1s_h3re.php%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E8%AF%A5%E8%B7%AF%E5%BE%84%E7%B2%98%E8%B4%B4%E5%88%B0%E7%BD%91%E5%9D%80%E5%90%8E%E9%9D%A2%E5%8D%B3%E5%8F%AF%E5%8F%91%E7%8E%B0flaghttps://example.com/f1ag_1s_h3re.php">https://example.com/robots.txt即可看到f1ag_1s_h3re.php文件，将该路径粘贴到网址后面即可发现flaghttps://example.com/f1ag_1s_h3re.php</a><br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/WUE9SHEL%60NE9%60%29%40%5DD7HG890.png" alt="avatar"></li>
 <li>backup文件<br>在网页的修改中，需要对网页文件名进行备份修改。此时就需要对网站整站或者其中某一站或者某一页进行备份，常见备份文件后缀名有.svn  .swp  .svn  .~  .bak  .bash_history，如果给我们一个文件添加前面所给后缀即可看见备份，给我们一个index.php我们添加后缀.bak即可，如index.php.bak。</li>
-<li>Cookie<br>当我们访问网站时，cookie（通常是很小的文本文件，由字母，数字和唯一的ID组成）就会被下载到我们的计算机当中，我们可以将cookie当作钥匙，下次登录网站时不用输入密码即可登入网页。cookie一般都在request当中，所以当有cookie信息时，我们查看请求信息即可<br><img src="https://img-blog.csdnimg.cn/160da5ce8bcb404e93ee13dc47cbb259.png" alt="avatar"></li>
-<li>GET和POST请求<br>GET请求放在url当中，所以隐私性较差，请求数据长度是有限的。<a href="http://example.com/%E8%BE%93%E5%85%A5%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E7%9A%84%E5%86%85%E5%AE%B9%E5%8D%B3%E4%B8%BAget%E8%AF%B7%E6%B1%82">http://example.com/输入需要输入的内容即为get请求</a><br>POST请求没有长度限制，请求数据在body中<br>如以get请求输入a&#x3D;1，以post请求输入b&#x3D;2<br><img src="https://img-blog.csdnimg.cn/8c828bf2dc2f450ba7a644a5225165a4.png" alt="avatar"></li>
+<li>Cookie<br>当我们访问网站时，cookie（通常是很小的文本文件，由字母，数字和唯一的ID组成）就会被下载到我们的计算机当中，我们可以将cookie当作钥匙，下次登录网站时不用输入密码即可登入网页。cookie一般都在request当中，所以当有cookie信息时，我们查看请求信息即可<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/SR%7DME4Z%5B%29C147%252B3HNPD%290.png"></li>
+<li>GET和POST请求<br>GET请求放在url当中，所以隐私性较差，请求数据长度是有限的。<a href="http://example.com/%E8%BE%93%E5%85%A5%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E7%9A%84%E5%86%85%E5%AE%B9%E5%8D%B3%E4%B8%BAget%E8%AF%B7%E6%B1%82">http://example.com/输入需要输入的内容即为get请求</a><br>POST请求没有长度限制，请求数据在body中<br>如以get请求输入a&#x3D;1，以post请求输入b&#x3D;2<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/A91ECFD1DC54191D8E8A31FCA0A8264F.png" alt="avatar"></li>
 <li>xff和referer<br>X-Forwarded-For是一个HTTP扩展头，主要让Web服务器访问用户真实的IP地址<br>Referer作用:如果我在<a href="http://www.sojson.com里面有一个www.baidu.com连接，那么点击这个www.baidu.com,它的header显示的是:Referer=https://www.sojson.com">www.sojson.com里面有一个www.baidu.com连接，那么点击这个www.baidu.com,它的header显示的是:Referer=https://www.sojson.com</a><br>Referer:是HTTP请求header的一部分,比如我只允许我自己的网站访问自己的图片服务器，那么我的域名是<a target="_blank" rel="noopener" href="http://www.sojson.com,那么图片服务器每次取到referer来判断一下是不是我自己的域名www.sojson.com,如果是就继续访问,如果不是则拦截./">www.sojson.com，那么图片服务器每次取到Referer来判断一下是不是我自己的域名www.sojson.com，如果是就继续访问，如果不是则拦截。</a></li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/26/easy-web/" data-id="clfq2spsz0000o4u14sgga1l0" data-title="easy_web" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/26/easy-web/" data-id="clfq3lsxs00006su11fhq8cwp" data-title="easy_web" class="article-share-link">Share</a>
       
       
       
@@ -156,7 +156,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/26/hello-world/" data-id="clfq2spt30001o4u1dn2xaxlp" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/03/26/hello-world/" data-id="clfq3lsy100016su10untc7vr" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
