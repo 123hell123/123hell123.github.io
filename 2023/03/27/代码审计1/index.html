@@ -79,13 +79,25 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="ZizZy&#39;s blog">
-<meta property="og:url" content="http://example.com/index.html">
+<meta name="description" content="代码审计这一块刚起步不够熟练，将这几天做的代码审计总结一下1.这里会获取两个变量a和b，首先会对a进行判断是否存在，然后获取整数值与6000000作比较，而且长度需要小于或者等于3首先对a进行构造，这里需要想到科学计数法，这里直接写a&#x3D;1e7即为1*10^7 2.接下来对b进行分析，首先对b进行判断是否存在，这里用到了函数substr(pos,n)和md5()，md5()将b进行加密，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码审计">
+<meta property="og:url" content="http://example.com/2023/03/27/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A11/index.html">
 <meta property="og:site_name" content="ZizZy&#39;s blog">
+<meta property="og:description" content="代码审计这一块刚起步不够熟练，将这几天做的代码审计总结一下1.这里会获取两个变量a和b，首先会对a进行判断是否存在，然后获取整数值与6000000作比较，而且长度需要小于或者等于3首先对a进行构造，这里需要想到科学计数法，这里直接写a&#x3D;1e7即为1*10^7 2.接下来对b进行分析，首先对b进行判断是否存在，这里用到了函数substr(pos,n)和md5()，md5()将b进行加密，">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://rs5kgysfr.hn-bkt.clouddn.com/S%7D5UHN%294Q%24%40MX_9%28CLAM%29V1.png">
+<meta property="og:image" content="http://rs5kgysfr.hn-bkt.clouddn.com/%286%5D~M%60%5B772%605WOJ7R%28E22%250.png">
+<meta property="og:image" content="http://rs5kgysfr.hn-bkt.clouddn.com/Z86%243Y%25L85R%7BI%7B%60~5%7B9%24K2I.png">
+<meta property="og:image" content="http://rs5kgysfr.hn-bkt.clouddn.com/3A873E1882476833C08DAC57963A695C.jpg">
+<meta property="og:image" content="http://rs5kgysfr.hn-bkt.clouddn.com/%7B4G2A~8EQ%24SV5%60_8%60LW4B7Q.png">
+<meta property="og:image" content="http://rs5kgysfr.hn-bkt.clouddn.com/6S~91ZVP%5D6MELW8%285VW~271.png">
+<meta property="og:image" content="http://rs5kgysfr.hn-bkt.clouddn.com/8D%282Q6EET%7D%25W3J~1FVWO%60M0.png">
+<meta property="article:published_time" content="2023-03-27T00:55:08.000Z">
+<meta property="article:modified_time" content="2023-03-27T07:30:20.236Z">
 <meta property="article:author" content="Zheng Yi">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://rs5kgysfr.hn-bkt.clouddn.com/S%7D5UHN%294Q%24%40MX_9%28CLAM%29V1.png">
 
 
 
@@ -115,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/"/>
+  <link rel="canonical" href="http://example.com/2023/03/27/代码审计1/"/>
 
 
 
 
 
-  <title>ZizZy's blog</title>
+  <title>代码审计 | ZizZy's blog</title>
   
 
 
@@ -140,8 +152,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -218,9 +229,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -250,9 +261,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2023/03/27/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A11/" itemprop="url">代码审计</a></h1>
+          <h1 class="post-title" itemprop="name headline">代码审计</h1>
         
 
         <div class="post-meta">
@@ -302,9 +311,7 @@
       
 
       
-        
-          
-            <ol>
+        <ol>
 <li><p>代码审计这一块刚起步不够熟练，将这几天做的代码审计总结一下<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/S%7D5UHN%294Q%24%40MX_9%28CLAM%29V1.png"><br>1.这里会获取两个变量a和b，首先会对a进行判断是否存在，然后获取整数值与6000000作比较，而且长度需要小于或者等于3<br>首先对a进行构造，这里需要想到科学计数法，这里直接写a&#x3D;1e7即为1*10^7</p>
 <p>2.接下来对b进行分析，首先对b进行判断是否存在，这里用到了函数substr(pos,n)和md5()，md5()将b进行加密，substr(md5($b),-6,-6)指将其md5加密值取最后6位这里我们直接构造一个b让其md5为8b184b。<br>（这里需要注意pos-是起始位置且默认为0，n-是截取的长度）</p>
 <p><img src="http://rs5kgysfr.hn-bkt.clouddn.com/%286%5D~M%60%5B772%605WOJ7R%28E22%250.png"></p>
@@ -321,8 +328,6 @@
 </li>
 </ol>
 
-          
-        
       
     </div>
     
@@ -339,139 +344,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/26/easy-web/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZizZy's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2023/03/26/easy-web/" itemprop="url">easy_web</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2023-03-26T21:33:58+08:00">
-                2023-03-26
-              </time>
+              <a href="/2023/03/26/easy-web/" rel="next" title="easy_web">
+                <i class="fa fa-chevron-left"></i> easy_web
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>这几天做了很多ctf在这里我总结一下经验吧</p>
-<ol>
-<li>robots协议<br>Robots协议(也称为爬虫协议，机器人协议)，网络通过Robots协议告诉搜索引擎哪些页面可以抓取，哪些不可以抓取。想查看一个网站的robots协议直接在网址后面加上robots.txt即可<br>我们访问<a href="https://example.com/robots.txt%E5%8D%B3%E5%8F%AF%E7%9C%8B%E5%88%B0f1ag_1s_h3re.php%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E8%AF%A5%E8%B7%AF%E5%BE%84%E7%B2%98%E8%B4%B4%E5%88%B0%E7%BD%91%E5%9D%80%E5%90%8E%E9%9D%A2%E5%8D%B3%E5%8F%AF%E5%8F%91%E7%8E%B0flaghttps://example.com/f1ag_1s_h3re.php">https://example.com/robots.txt即可看到f1ag_1s_h3re.php文件，将该路径粘贴到网址后面即可发现flaghttps://example.com/f1ag_1s_h3re.php</a><br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/WUE9SHEL%60NE9%60%29%40%5DD7HG890.png" alt="avatar"></li>
-<li>backup文件<br>在网页的修改中，需要对网页文件名进行备份修改。此时就需要对网站整站或者其中某一站或者某一页进行备份，常见备份文件后缀名有.svn  .swp  .svn  .~  .bak  .bash_history，如果给我们一个文件添加前面所给后缀即可看见备份，给我们一个index.php我们添加后缀.bak即可，如index.php.bak。</li>
-<li>Cookie<br>当我们访问网站时，cookie（通常是很小的文本文件，由字母，数字和唯一的ID组成）就会被下载到我们的计算机当中，我们可以将cookie当作钥匙，下次登录网站时不用输入密码即可登入网页。cookie一般都在request当中，所以当有cookie信息时，我们查看请求信息即可<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/SR%7DME4Z%5B%29C147%252B3HNPD%290.png"></li>
-<li>GET和POST请求<br>GET请求放在url当中，所以隐私性较差，请求数据长度是有限的。<a href="http://example.com/%E8%BE%93%E5%85%A5%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E7%9A%84%E5%86%85%E5%AE%B9%E5%8D%B3%E4%B8%BAget%E8%AF%B7%E6%B1%82">http://example.com/输入需要输入的内容即为get请求</a><br>POST请求没有长度限制，请求数据在body中<br>如以get请求输入a&#x3D;1，以post请求输入b&#x3D;2<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/A91ECFD1DC54191D8E8A31FCA0A8264F.png" alt="avatar"></li>
-<li>xff和referer<br>X-Forwarded-For是一个HTTP扩展头，主要让Web服务器访问用户真实的IP地址<br>Referer作用:如果我在<a href="http://www.sojson.com里面有一个www.baidu.com连接，那么点击这个www.baidu.com,它的header显示的是:Referer=https://www.sojson.com">www.sojson.com里面有一个www.baidu.com连接，那么点击这个www.baidu.com,它的header显示的是:Referer=https://www.sojson.com</a><br>Referer:是HTTP请求header的一部分,比如我只允许我自己的网站访问自己的图片服务器，那么我的域名是<a target="_blank" rel="noopener" href="http://www.sojson.com,那么图片服务器每次取到referer来判断一下是不是我自己的域名www.sojson.com,如果是就继续访问,如果不是则拦截./">www.sojson.com，那么图片服务器每次取到Referer来判断一下是不是我自己的域名www.sojson.com，如果是就继续访问，如果不是则拦截。</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -481,10 +375,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -492,6 +387,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -703,6 +602,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
