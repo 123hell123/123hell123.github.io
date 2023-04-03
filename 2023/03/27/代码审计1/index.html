@@ -31,8 +31,9 @@
 <meta property="og:image" content="http://rs5kgysfr.hn-bkt.clouddn.com/6S~91ZVP%5D6MELW8%285VW~271.png">
 <meta property="og:image" content="http://rs5kgysfr.hn-bkt.clouddn.com/8D%282Q6EET%7D%25W3J~1FVWO%60M0.png">
 <meta property="article:published_time" content="2023-03-27T00:55:08.000Z">
-<meta property="article:modified_time" content="2023-03-28T21:01:39.012Z">
+<meta property="article:modified_time" content="2023-03-30T11:35:38.618Z">
 <meta property="article:author" content="Zheng Yi">
+<meta property="article:tag" content="代码审计">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://rs5kgysfr.hn-bkt.clouddn.com/S%7D5UHN%294Q%24%40MX_9%28CLAM%29V1.png">
   
@@ -285,14 +286,14 @@
 <li><p>代码审计这一块刚起步不够熟练，将这几天做的代码审计总结一下<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/S%7D5UHN%294Q%24%40MX_9%28CLAM%29V1.png" srcset="/img/loading.gif" lazyload><br>1.这里会获取两个变量a和b，首先会对a进行判断是否存在，然后获取整数值与6000000作比较，而且长度需要小于或者等于3<br>首先对a进行构造，这里需要想到科学计数法，这里直接写a&#x3D;1e7即为1*10^7</p>
 <p>2.接下来对b进行分析，首先对b进行判断是否存在，这里用到了函数substr(pos,n)和md5()，md5()将b进行加密，substr(md5($b),-6,-6)指将其md5加密值取最后6位这里我们直接构造一个b让其md5为8b184b。<br>（这里需要注意pos-是起始位置且默认为0，n-是截取的长度）</p>
 <p><img src="http://rs5kgysfr.hn-bkt.clouddn.com/%286%5D~M%60%5B772%605WOJ7R%28E22%250.png" srcset="/img/loading.gif" lazyload></p>
-<p>1.这里就对c进行构造了首先json_decode()将获取到的值进行解码,然后array()函数将其强制转换为数组，并赋值给c，类似于这个例子<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/Z86%243Y%25L85R%7BI%7B%60~5%7B9%24K2I.png" srcset="/img/loading.gif" lazyload></p>
+<p>(1)这里就对c进行构造了首先json_decode()将获取到的值进行解码,然后array()函数将其强制转换为数组，并赋值给c，类似于这个例子<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/Z86%243Y%25L85R%7BI%7B%60~5%7B9%24K2I.png" srcset="/img/loading.gif" lazyload></p>
 <p>在这个例子中，json_decode()函数将JSON字符串解码为一个PHP数组，并将其赋值给$data变量。然后可以使用print_r()函数打印数组的内容。</p>
-<p>2.接下来判断数组c中的变量m是否为数字，值是否大于2022，这里要求不是数字且值大于2022<img src="http://rs5kgysfr.hn-bkt.clouddn.com/3A873E1882476833C08DAC57963A695C.jpg" srcset="/img/loading.gif" lazyload><br>3.判断数组c中变量n是否为数组，且该数组中名为n的数组有两个值，第一个值为也为数组这里好构造<br>4.$d &#x3D; array_search(“DGGJ”, $c[“n”]);<br>   $d &#x3D;&#x3D;&#x3D; false?die(“no…”):NULL;<br>这两个代码让人头痛，首先n中必须有DGGJ，且不能为本身，所以我们应该想办法绕过，这里偷懒借用大佬的图片<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/%7B4G2A~8EQ%24SV5%60_8%60LW4B7Q.png" srcset="/img/loading.gif" lazyload><br>所以我们需要在数组c中添加0即可<br>最后构造payload?a&#x3D;1e9&amp;b&#x3D;53724&amp;c&#x3D;{“m”:”2023a”,”n”:[[0],0]}</p>
+<p>(2)接下来判断数组c中的变量m是否为数字，值是否大于2022，这里要求不是数字且值大于2022<img src="http://rs5kgysfr.hn-bkt.clouddn.com/3A873E1882476833C08DAC57963A695C.jpg" srcset="/img/loading.gif" lazyload><br>(3)判断数组c中变量n是否为数组，且该数组中名为n的数组有两个值，第一个值为也为数组这里好构造<br>(4)$d &#x3D; array_search(“DGGJ”, $c[“n”]);<br>   $d &#x3D;&#x3D;&#x3D; false?die(“no…”):NULL;<br>这两个代码让人头痛，首先n中必须有DGGJ，且不能为本身，所以我们应该想办法绕过，这里偷懒借用大佬的图片<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/%7B4G2A~8EQ%24SV5%60_8%60LW4B7Q.png" srcset="/img/loading.gif" lazyload><br>所以我们需要在数组c中添加0即可<br>最后构造payload?a&#x3D;1e9&amp;b&#x3D;53724&amp;c&#x3D;{“m”:”2023a”,”n”:[[0],0]}</p>
 </li>
 <li><p>终于到了第二个代码审计了（JS），上图！</p>
 <p><img src="http://rs5kgysfr.hn-bkt.clouddn.com/6S~91ZVP%5D6MELW8%285VW~271.png" srcset="/img/loading.gif" lazyload></p>
-<p>一开始看的我头痛，不过还是耐着性子慢慢的看。<br>1.定义了两个变量pass和tab，pass不必多说，pass_enc是一个需要我们输入的字符串，并且通过split(‘,’)将该字符串隔开并且以数组的形式输出，并且将值赋给tab，同理将pass也变成包含字符串的数组赋值给tab2.<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/8D%282Q6EET%7D%25W3J~1FVWO%60M0.png" srcset="/img/loading.gif" lazyload></p>
-<p>2.String.fromCharCode()<br>这里是将字符串转化成unicode对应的编码（Unicode 是一种字符编码标准，它为每个字符分配了一个唯一的数字，称为“码位”（code point）。Unicode 包括了世界上几乎所有的书写系统所使用的字符，可以表示几乎所有语言的文字。）<br>经过一系列的运算最后输出了<br>786OsErtk12<br>FAUX PASSWORD HAHA<br>结果应该是上面第一个值</p>
+<p>一开始看的我头痛，不过还是耐着性子慢慢的看。<br>(1)定义了两个变量pass和tab，pass不必多说，pass_enc是一个需要我们输入的字符串，并且通过split(‘,’)将该字符串隔开并且以数组的形式输出，并且将值赋给tab，同理将pass也变成包含字符串的数组赋值给tab2.<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/8D%282Q6EET%7D%25W3J~1FVWO%60M0.png" srcset="/img/loading.gif" lazyload></p>
+<p>(2)String.fromCharCode()<br>这里是将字符串转化成unicode对应的编码（Unicode 是一种字符编码标准，它为每个字符分配了一个唯一的数字，称为“码位”（code point）。Unicode 包括了世界上几乎所有的书写系统所使用的字符，可以表示几乎所有语言的文字。）<br>经过一系列的运算最后输出了<br>786OsErtk12<br>FAUX PASSWORD HAHA<br>结果应该是上面第一个值</p>
 </li>
 <li><p>第三个代码审计了，感觉代码审计真的折寿</p>
 </li>
@@ -305,6 +306,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/ctf/" class="category-chain-item">ctf</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">#代码审计</a>
+      
+    </div>
   
 </div>
 

@@ -16,19 +16,22 @@
   <meta name="author" content="Zheng Yi">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="文件包含1">
-<meta property="og:url" content="http://example.com/2023/03/29/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB1/index.html">
+    <meta name="description" content="MYSQL数据库管理（增删改查）1、查看数据库结构查看当前数据库结构SHOW DATABASES；设置密码mysqladmin -u root -p password “abc123”远程登陆musql -u root -p (密码)查看数据库中的表USE 数据库名；SHOW TABLES；查看表的结构USE 数据库名；DESC 表名；2、创建及删除数据库表创建新的数据库CREATE DATABA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库">
+<meta property="og:url" content="http://example.com/2023/04/03/%E6%95%B0%E6%8D%AE%E5%BA%93/index.html">
 <meta property="og:site_name" content="ZizZy&#39;s blog">
+<meta property="og:description" content="MYSQL数据库管理（增删改查）1、查看数据库结构查看当前数据库结构SHOW DATABASES；设置密码mysqladmin -u root -p password “abc123”远程登陆musql -u root -p (密码)查看数据库中的表USE 数据库名；SHOW TABLES；查看表的结构USE 数据库名；DESC 表名；2、创建及删除数据库表创建新的数据库CREATE DATABA">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-28T22:49:08.000Z">
-<meta property="article:modified_time" content="2023-03-28T22:50:23.906Z">
+<meta property="article:published_time" content="2023-04-03T07:14:33.000Z">
+<meta property="article:modified_time" content="2023-04-03T07:15:34.374Z">
 <meta property="article:author" content="Zheng Yi">
+<meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>文件包含1 - ZizZy&#39;s blog</title>
+  <title>数据库 - ZizZy&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -194,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="文件包含1"></span>
+            <span id="subtitle" data-typed-text="数据库"></span>
           
         </div>
 
@@ -205,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-29 06:49" pubdate>
-          2023年3月29日 早上
+        <time datetime="2023-04-03 15:14" pubdate>
+          2023年4月3日 下午
         </time>
       </span>
     
@@ -217,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          743 字
         
       </span>
     
@@ -228,7 +231,7 @@
         
         
         
-          1 分钟
+          7 分钟
         
       </span>
     
@@ -266,12 +269,13 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">文件包含1</h1>
+            <h1 style="display: none">数据库</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <p>MYSQL数据库管理（增删改查）<br>1、查看数据库结构<br>查看当前数据库结构<br>SHOW DATABASES；<br>设置密码<br>mysqladmin -u root -p password “abc123”<br>远程登陆<br>musql -u root -p (密码)<br>查看数据库中的表<br>USE 数据库名；<br>SHOW TABLES；<br>查看表的结构<br>USE 数据库名；<br>DESC 表名；<br>2、创建及删除数据库表<br>创建新的数据库<br>CREATE DATABASES 数据库；<br>创建新的表<br>CRAETE TABLE 表名 （字段1 数据类型，字段2 数据类型[]）<br>CREATE TABLE MM(id int NOT NULL,name char(10) NOT NULL,age char(2),sex,DEFAULT ‘ ‘,PRIMARY KEY(id));<br>删除指定数据<br>DROP TABLE [数据库名.]表名；<br>删除指定数据库<br>DROP DATABASE 数据库名；<br>3、管理表中的数据记录<br>向数据表中插入新的数据记录<br>INSERT INTO 表名（字段1，字段2[,..]）valuses(1,’张三’,20,’男’)<br>查询数据名<br>SELECT 字段名1,字段名2[ ] FROM表名 [WHERE 条件表达式];<br>修改、更新数据表中的数据<br>UPDATE 表名 SET 字段名1&#x3D;字段值2[，字段名2&#x3D;字段值2][WHERE 条件表达式]<br>UPDATE CW SET age&#x3D;25 WHERE name&#x3D;’张三’;<br>在数据库表中删除指定的数据记录<br>DELETE FROM 表名 [WHERE 条件表达式]<br>4、修改表名和数据结构<br>修改表名<br>ALTER TABLE 旧表名 RENAME 新表名<br>ALTER TABLE CW RENAME MM；<br>扩展表名字（增加字段）<br>ALTER TABLE 表名 ADD address varchar(50) defafult ‘地址不详’；</p>
+
                 
               </div>
             
@@ -279,6 +283,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+      
+    </div>
   
 </div>
 
@@ -288,8 +320,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>文件包含1</div>
-      <div>http://example.com/2023/03/29/文件包含1/</div>
+      <div>数据库</div>
+      <div>http://example.com/2023/04/03/数据库/</div>
     </div>
     <div class="license-meta">
       
@@ -301,7 +333,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年3月29日</div>
+          <div>2023年4月3日</div>
         </div>
       
       
@@ -337,8 +369,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/29/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/" title="文件上传1">
-                        <span class="hidden-mobile">文件上传1</span>
+                      <a href="/2023/04/03/TCP-IP%E5%8D%8F%E8%AE%AE/" title="TCP/IP协议">
+                        <span class="hidden-mobile">TCP/IP协议</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

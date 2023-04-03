@@ -4,13 +4,225 @@
   
   
   <entry>
-    <title>文件包含1</title>
-    <link href="/2023/03/29/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB1/"/>
-    <url>/2023/03/29/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB1/</url>
+    <title>数据库</title>
+    <link href="/2023/04/03/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <url>/2023/04/03/%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    
+    <content type="html"><![CDATA[<p>MYSQL数据库管理（增删改查）<br>1、查看数据库结构<br>查看当前数据库结构<br>SHOW DATABASES；<br>设置密码<br>mysqladmin -u root -p password “abc123”<br>远程登陆<br>musql -u root -p (密码)<br>查看数据库中的表<br>USE 数据库名；<br>SHOW TABLES；<br>查看表的结构<br>USE 数据库名；<br>DESC 表名；<br>2、创建及删除数据库表<br>创建新的数据库<br>CREATE DATABASES 数据库；<br>创建新的表<br>CRAETE TABLE 表名 （字段1 数据类型，字段2 数据类型[]）<br>CREATE TABLE MM(id int NOT NULL,name char(10) NOT NULL,age char(2),sex,DEFAULT ‘ ‘,PRIMARY KEY(id));<br>删除指定数据<br>DROP TABLE [数据库名.]表名；<br>删除指定数据库<br>DROP DATABASE 数据库名；<br>3、管理表中的数据记录<br>向数据表中插入新的数据记录<br>INSERT INTO 表名（字段1，字段2[,..]）valuses(1,’张三’,20,’男’)<br>查询数据名<br>SELECT 字段名1,字段名2[ ] FROM表名 [WHERE 条件表达式];<br>修改、更新数据表中的数据<br>UPDATE 表名 SET 字段名1&#x3D;字段值2[，字段名2&#x3D;字段值2][WHERE 条件表达式]<br>UPDATE CW SET age&#x3D;25 WHERE name&#x3D;’张三’;<br>在数据库表中删除指定的数据记录<br>DELETE FROM 表名 [WHERE 条件表达式]<br>4、修改表名和数据结构<br>修改表名<br>ALTER TABLE 旧表名 RENAME 新表名<br>ALTER TABLE CW RENAME MM；<br>扩展表名字（增加字段）<br>ALTER TABLE 表名 ADD address varchar(50) defafult ‘地址不详’；</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据库</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>面试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>TCP/IP协议</title>
+    <link href="/2023/04/03/TCP-IP%E5%8D%8F%E8%AE%AE/"/>
+    <url>/2023/04/03/TCP-IP%E5%8D%8F%E8%AE%AE/</url>
+    
+    <content type="html"><![CDATA[<p>OSI七层模型<br>应用层、表示层、会话层、传输层、网络层、数据链路层、物理层<br>TCP&#x2F;IP协议<br>应用层、传输层、网络层、链路层<br>TCP&#x2F;IP常见的协议有<br>1、应用层：HTTP(超文传输协议)、FTP(文件传输协议)、SMTP(邮件传输协议)、SSH(远程登录协议)<br>该层协议所提供的服务能直接支持用户应用<br>2、传输层：UDP、TCP<br>端到端的连接提供传传输服务<br>TCP是一个面向连接的、可靠的传输协议<br>UDP是一个无连接的数据报协议<br>总的来说TCP传输效率低，但是可靠性强；UDP协议传输效率高，但是可靠性较低<br>3、网络层：ICMP、IP、IGMP<br>网络层负责将数据传输到目标地址<br>4、链路层：ARP、RARP<br>链路层有时候也被称为数据链路层或者网络接口层，用来处理连接网络的硬件部分<br>集线器-物理层，交换机-数据链路层，路由器-网络层，<br>MAC地址也称为物理地址，形如aa-bb-cc-dd交换机：<br>交换机内有一张MAC地址表，记录着每一个MAC地址的设备，连接在其哪一个端口上，交换机通过自己维护的MAC地址表，发现目标机器B的MAC地址bb-bb-bb-bb映射到了端口1上，于是把数据从1号端口发给了B，通过这种方式组成的小范围网络叫做以太网。<br>路由器：<br>由于交换机接口有限，当电脑数量成千上万时，需要很多交换机，此时需要路由器将他们连接起来<br>路由器每一个端口都有一个MAC地址，假若我们想要成千上万台电脑传输信息，则需要先将信息全部传输到路由器，再由路由器分发到对应的电脑，于是我们设置了IP，将IP地址192.168.197.0开头的全部发送到路由器<br>子网、掩码：<br>假若计算机A192.168.197.1，计算机B192.168.197.7则两个计算机在同一子网中，可通过交换机进行数据传输。计算机C192.168.1.2与上面两个计算机不在同一子网中，需要通过路由器进行信息传递。但是机器无法向人类这样进行区分，于是发明了掩码，以上三台机器的掩码为225.225.225.0，掩码与IP进行运算后，计算机A：192.168.197.0，计算机B：192.168.197.0，计算机C：192.168.1.0，通过比较此时机器知道计算机A与B在统一子网中，C则不再同一子网中。<br>网关：<br>计算机A无法区分谁是路由器，于是我们在路由器中设置自己的IP地址也就是网关，当计算机A发现要发送消息的对象不在同一子网中时，则将消息发送给网关（也就是路由器，当然说发送给网关更准确），路由器如何将接受的消息发送给对应的目标呢，它有自己的路由表，</p><p>详细过程：首先计算机A通过子网掩码计算出与计算机F是否在同一子网内，（假若在，则通过交换机直接传输信息），若不在则通过ARP协议找到默认网关的MAC地址。此时将源MAC地址与网关MAC地址封装在数据链路层表头（至始至终只有MAC地址在不断变化，而IP地址都不变），又将源IP地址和目标IP地址封装在网络层表头然后发包。交换机1收到数据包的时候发送给目标路由器，此时数据包来到路由器，发现目标IP并查看路由表跳转到下一地址，此时再匹配路由表，并将目标MAC封装到数据链库层，然后发送给路由器2，路由器查表查看到目标IP对应的端口，此时再查看arp缓存找到MAC地址，并且发送出去，最终目标收到了包。</p><p>TCP三次握手<br>第一次握手：客户端发送连接请求<br>第二次握手：服务端返回ACK确认<br>第三次握手：客服端收到ACK确认后，进入ESTABLISHED，并且发送ACK确认，此时服务端收到后也进入ESTABLISHED，此时通信连接建立成功<br>TCP四次挥手<br>第一次挥手：主动断开方，向对方发送一个结束请求包<br>第二次挥手：收到主动断开方的请求后，被动断开方会发送ACK响应报文，表示同意断开，此时被动断开方进入关闭等待的过程（CLOSE-WAIT）对方向本地的连接已经关闭了，但是本地向对方传输文件对方还是会接收的。<br>第三次挥手：被动断开方的数据发送完了或者CLOSE-WAIT（关闭等待）状态截止后会向对方发送ACK，被动断开方进入LAST_ACK状态<br>第四次挥手：主动断开方收到ACK确认报文进入TIME-WAIT状态，等待超时后则会主动断开，在等待2MSL后，如果期间没有收到其他报文则说明对方已经关闭，自己也会进行关闭</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>网络</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>面试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>网络</title>
+    <link href="/2023/04/03/%E7%BD%91%E7%BB%9C/"/>
+    <url>/2023/04/03/%E7%BD%91%E7%BB%9C/</url>
+    
+    <content type="html"><![CDATA[<p>OSI七层模型<br>应用层<br>表示层<br>会话层<br>传输层<br>网络层<br>数据链路层<br>物理层<br>常见的端口<br>http 80(超文本传输协议)  https 443(以安全为目的http安全通道) FTP 21(文件传输协议)  SMTP 25(邮件传输协议)  文件共享 SMB 445   ssh 22(加密登录) 1433mssql  3306 Mysql  6379 redis 7001Weblogic</p><p>TCP协议为什么时可靠的<br>TCP是基于连接的，在进行数据传输前要先进行三次握手建立连接<br>UDP协议<br>收发协议不需要建立连接，而且没有TCP协议中的ACK确认</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>网络</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>面试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>应急响应</title>
+    <link href="/2023/04/03/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"/>
+    <url>/2023/04/03/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</url>
+    
+    <content type="html"><![CDATA[<p>windows应急响应</p><p>准备-检测-抑制-根除-恢复-总结、<br>一、检查系统账号安全<br>1 查看是否有弱口令，远程端口是否对外开放<br>2 查看服务器是否存在可疑账号、新增账号<br>二、检查异常端口、进程<br>1、检查端口连接情况，是否有远程连接，可疑连接，用netstat -ano检查端口<br>2、输入msinfo32可查看看进程路径、文件创建时间、文件启动时间等信息<br>三、检查启动项、计划任务<br>1、检查端口是否有异常启动项，查看注册表查看开机项是否正常启动<br>2、控制面表的任务计划查看计划任务属性，发现木马文件路径<br>四、查看系统相关信息<br>1、输入systeminfo查看系统信息<br>2、查看用户目录，是否创建新的用户</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>web安全</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>面试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>中间件漏洞</title>
+    <link href="/2023/04/03/%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%BC%8F%E6%B4%9E/"/>
+    <url>/2023/04/03/%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%BC%8F%E6%B4%9E/</url>
     
     <content type="html"><![CDATA[]]></content>
     
     
+    <categories>
+      
+      <category>web安全</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>面试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>web安全漏洞</title>
+    <link href="/2023/04/03/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E/"/>
+    <url>/2023/04/03/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>web安全</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>面试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>溯源</title>
+    <link href="/2023/04/03/%E6%BA%AF%E6%BA%90/"/>
+    <url>/2023/04/03/%E6%BA%AF%E6%BA%90/</url>
+    
+    <content type="html"><![CDATA[<p>一、溯源方法</p><p>攻击源捕获-溯源处理-攻击者画像<br>二、攻击源捕获来源<br>1、审查邮件钓鱼<br>2、获取安全设备数据进行分析，特别是流量数据<br>3、网络资产所在服务器运行状态<br>4、中间件日志信息查看<br>5、合理使用蜜罐系统进行溯源追踪<br>三、溯源处理<br>1、域名查询<br>2、IP查询<br>3、身份查询<br>4、文件查询<br>四、攻击者画像<br>1、攻击路径<br>2、攻击目的<br>3、网络代理<br>4、攻击手法<br>5、攻击者的身份构成<br>虚拟身份：ID、名称、网名<br>真实身份：姓名、家庭<br>联系方式：手机号、QQ&#x2F;微信<br>组织情况：单位名称、职位信息</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>web安全</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>面试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>安全设备</title>
+    <link href="/2023/04/03/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87/"/>
+    <url>/2023/04/03/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87/</url>
+    
+    <content type="html"><![CDATA[<p>1、基础防火墙FW<br>主要是实现基本包过滤的防火墙，运用于数据链路层、网络层、传输层，可以拦截底层攻击行为，但是对应用层的深层攻击无能为力<br>(1)防火墙的功能 防火墙对于流经它的流量会进行扫描，这样能够过滤掉一些攻击。防火墙还可以关闭掉不使用的端口。而且可以封锁特定端口的通信，封锁特洛伊木马。可以禁止来不明入侵者的所有通信</p><p>2、IDS<br>入侵检测系统，主要是以提供方报告为主，侧重于风险管理,会监视分析用户及系统构造弱点</p><p>3、IPS<br>监视网络或网络设备的网传输行为，主要作用是实时阻断入侵行为，侧重于风险控制。主要布置在主干路上，对内外网进行流量分析</p><p>检测webshell设备D盾 河马  动态感知设备奇安信的天眼、网御星云、</p><p>VPN:虚拟专用网络，在公网上建立专用网络进行加密通讯CDN:内容分发网络提高用户访问网站的响应速度</p><p>系统加固 账户安全windows<br>比如设置登录时不显示上次登录的用户名，防止弱口令爆破。设置账户锁定策略，比如说登录行为限制次数，达到次数后锁定多长时间<br>Linux<br>禁用root之外的超级用户 显示普通用户用duso提权，或者说限制提权大小，设置账号锁定登录次数<br>口令安全<br>windows设置密码必须符合复杂度的要求，设置最小密码长度不能为0，设置不能用历史密码<br>Linux<br>修改口令复杂度，设置密码有效期</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>web安全</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>面试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>链表</title>
+    <link href="/2023/03/30/%E7%BA%BF%E6%80%A7%E8%A1%A8/"/>
+    <url>/2023/03/30/%E7%BA%BF%E6%80%A7%E8%A1%A8/</url>
+    
+    <content type="html"><![CDATA[<p>简单的记录下数据结构的学习过程</p><ol><li><p>数据结果添加了一些新东西，typedef int ElemType，这个语句类似于宏定义，用关键字typedef申明了一个新型数据类型，在这里他指明ElemType是int数据类型的别名</p></li><li><p>在单链表中，每个节点类型用LinkNode表示，它应该包括存储元素的数据域，这里用data表示，其类型用通用的ElemType表示，还包括存储后继节点的指针域，这里用next表示，LinkNode声明如下</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span></span><br><span class="hljs-class">&#123;</span> ElemType data;<br> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LinkNode</span> *<span class="hljs-title">next</span>;</span><br>&#125;LinkNode<br></code></pre></td></tr></table></figure><p>在这里LNode是结构体名，LinkNode是新建立的类名。通过使用关键字typedef来定义一个新的类名LinNode来代替struct LNode可以简化代码，让其有更高的可读性。<br>结构体类的指针怎么定义呢直接  类型名 *p; 也就是LinkNode *p；那么如何访问结构体的数据成员呢用-&gt;即可，在该例子中p是结构体的指针，调用结构体中的数据成员data，便可以用p-&gt;data.</p></li><li><p>链表的插入和删除，在单链表中我们需要知道，每个节点都相当于有一个头和有一个尾，而一个节点的尾部就是下一个节点的头部。<img src="http://rs5kgysfr.hn-bkt.clouddn.com/O%25X6YFSOB%40%5D9%25KE8~%7B_SO%7DT.png"><br>链表的插入<br>(1)newNode-&gt;next&#x3D;x-&gt;next;<br>(2)x-&gt;next&#x3D;newNode;<br>链表的删除(假设已经把newNode插入了，现在需要将其删除)<br>(1)x-&gt;next&#x3D;x-&gt;next-&gt;next</p></li><li><p>建立单链表<br>建立链表有两种方法分别是，头插法和尾插法<br>(1)头插法<img src="http://rs5kgysfr.hn-bkt.clouddn.com/3E7N%4058S%7DAD%5BO4NFITB%60K8O.png"><br>设插入的节点为s，头节点为L，s-&gt;next&#x3D;L-&gt;next;  L-&gt;next&#x3D;s;<br>头插法得到的链表是逆序。<br>(2)尾插法<br><img src="C:\Users\高地舞者\AppData\Roaming\Typora\typora-user-images\image-20230330145553946.png"><br>尾插法需要一个尾指针，且该尾指针的位置需要不断更新，设尾指针为L，新插入的节点为s<br>L-&gt;next&#x3D;s; L&#x3D;s;</p></li><li><p>作业<br>1、已知两个递增有序的链表A和B，分别表示两个集合。试设计一个算法，用于求出A与B的交集，并存储在C链表中。例如 : La &#x3D; {2， 4，6，8}；Lb &#x3D; {4，6，8，10}；Lc &#x3D; {4，6，8}。（要求完整程序代码、输入实例和运行结果）。</p><p>2、假设有一个带头结点的单链表L&#x3D;（a1，a2，…，an）。设计一个算法将所有结点逆置，即：L&#x3D;（an，an-1，…，a1）。（要求完整程序代码、输入实例和运行结果）</p><p>1</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><code class="hljs c">   <span class="hljs-meta">#inclde <span class="hljs-string">&lt;stdio.h&gt;</span></span><br>   <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;malloc.h&gt;</span></span><br>   <span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> ElemType;<br>   <span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span></span><br><span class="hljs-class">   &#123;</span><br>       ElemType data;<br>       <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span> *<span class="hljs-title">next</span>;</span>  <span class="hljs-comment">//指向后继结点</span><br>   &#125;LinkNode;               <span class="hljs-comment">//声明单链表结点类型</span><br>   <span class="hljs-type">void</span> <span class="hljs-title function_">CreateListF</span><span class="hljs-params">(LinkNode *&amp;L,ElemType a[],<span class="hljs-type">int</span> n)</span>   <span class="hljs-comment">//头插法建立单链表</span><br>   &#123;<br>       LinkNode *s;<br>       L=(LinkNode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LinkNode));    <span class="hljs-comment">//创建头结点</span><br>       L-&gt;next=<span class="hljs-literal">NULL</span>;<br>       <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>       &#123;<br>          s=(LinkNode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LinkNode));<span class="hljs-comment">//创建新结点s</span><br>   s-&gt;data=a[i];<br>   s-&gt;next=L-&gt;next;<span class="hljs-comment">//将结点s插在原开始结点之前,头结点之后</span><br>   L-&gt;next=s;<br>       &#125;<br>   &#125;<br>   <span class="hljs-type">void</span> <span class="hljs-title function_">DispList</span><span class="hljs-params">(LinkNode *L)</span> <span class="hljs-comment">//输出线性表</span><br>   &#123;<br>   LinkNode *p=L-&gt;next;<br>   <span class="hljs-keyword">while</span> (p!=<span class="hljs-literal">NULL</span>)<br>   &#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,p-&gt;data);<br>   p=p-&gt;next;<br>   &#125;<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>   &#125;<br>   <br>   <span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>   &#123;<br>       LinkNode *L1=<span class="hljs-literal">NULL</span> ,*L2=<span class="hljs-literal">NULL</span>,*L3=<span class="hljs-literal">NULL</span>,*L4=<span class="hljs-literal">NULL</span>,*L5=<span class="hljs-literal">NULL</span>;<br>       <span class="hljs-type">int</span> m,n,j=<span class="hljs-number">0</span>;<br>       <span class="hljs-type">int</span> a[<span class="hljs-number">100</span>]=&#123;<span class="hljs-number">0</span>&#125;,b[<span class="hljs-number">100</span>]=&#123;<span class="hljs-number">0</span>&#125;,c[<span class="hljs-number">100</span>]=&#123;<span class="hljs-number">0</span>&#125;;<br>       <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入数组a需要输入的个数&quot;</span>);<br>       scanf_s(<span class="hljs-string">&quot;%d&quot;</span>,&amp;m);<br>       <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入数组a的值&quot;</span>);<br>       <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)<br>       &#123;<br>           scanf_s(<span class="hljs-string">&quot;%d&quot;</span>,&amp;a[i]);<br>       &#125;<br>       <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入数组b需要输入的个数&quot;</span>);<br>       scanf_s(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>       <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入数组b的值&quot;</span>);<br>       <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>       &#123;<br>           scanf_S(<span class="hljs-string">&quot;%d&quot;</span>,&amp;b[i]);<br>       &#125;<br>   CreateListF(*&amp;L1,a,m);<br>   CreateListF(*&amp;L2,b,n);<br>   *L3=*L1-&gt;next;<br>   *L4=*L2-&gt;next;<br>   <span class="hljs-keyword">while</span>(L3!=<span class="hljs-literal">NULL</span>&amp;&amp;L4!=<span class="hljs-literal">NULL</span>)<br>&#123;<br>       <span class="hljs-keyword">if</span>(*L3-&gt;data==L4-&gt;data)<br>    &#123;<br>           c[j]=L3-&gt;data;<br>           L3=L3-&gt;next;<br>           L4=L4-&gt;next;<br>           j++;<br>       &#125;<br>       <span class="hljs-keyword">if</span>(*L3-&gt;data &gt; *L4-&gt;data)<br>       &#123;<br>           L4=L4-&gt;next;<br>       &#125;<br>       <span class="hljs-keyword">if</span>(L3-&gt;data &lt; L4-&gt;data)<br>       &#123;<br>           L3=L3-&gt;next;<br>       &#125;<br>   &#125;<br>   CreateListF(*&amp;L5,c,j);<br>   DispList(L5);<br>   <br></code></pre></td></tr></table></figure><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;malloc.h&gt;</span></span><br><span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> ElemType;<br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span></span><br><span class="hljs-class">&#123;</span><br>    ElemType data;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span> *<span class="hljs-title">next</span>;</span>  <span class="hljs-comment">//指向后继结点</span><br>&#125;LinkNode;               <span class="hljs-comment">//声明单链表结点类型</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">CreateListF</span><span class="hljs-params">(LinkNode *&amp;L,ElemType a[],<span class="hljs-type">int</span> n)</span>   <span class="hljs-comment">//头插法建立单链表</span><br>&#123;<br>    LinkNode *s;<br>    L=(LinkNode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LinkNode));    <span class="hljs-comment">//创建头结点</span><br>    L-&gt;next=<span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)<br>    &#123;<br>       s=(LinkNode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LinkNode));<span class="hljs-comment">//创建新结点s</span><br>s-&gt;data=a[i];<br>s-&gt;next=L-&gt;next;<span class="hljs-comment">//将结点s插在原开始结点之前,头结点之后</span><br>L-&gt;next=s;<br>    &#125;<br>&#125;<br><span class="hljs-type">void</span> <span class="hljs-title function_">DispList</span><span class="hljs-params">(LinkNode *L)</span> <span class="hljs-comment">//输出线性表</span><br>&#123;<br>LinkNode *p=L-&gt;next;<br><span class="hljs-keyword">while</span> (p!=<span class="hljs-literal">NULL</span>)<br>&#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,p-&gt;data);<br>p=p-&gt;next;<br>&#125;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    LinkNode *L1=<span class="hljs-literal">NULL</span>;<br>    <span class="hljs-type">int</span> m,j=<span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> a[<span class="hljs-number">100</span>]=&#123;<span class="hljs-number">0</span>&#125;;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入数组a值的个数&quot;</span>);<br>    scanf_s(<span class="hljs-string">&quot;%d&quot;</span>,m);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入数组a的值&quot;</span>)<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)<br>    &#123;<br>        scanf_s(<span class="hljs-string">&quot;%d&quot;</span>,&amp;a[j]);<br>        j++<br>    &#125;<br>    CreateListF(*&amp;L,a,n);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++)<br>&#123;<br>ListInsert(*&amp;L1, ListLength(L1) + <span class="hljs-number">1</span> - i, L1-&gt;next-&gt;data);<br>ListDelete(*&amp;L1,<span class="hljs-number">1</span>,j);<br>&#125;<br>DispList(L1);<br>&#125;<br></code></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数据结构</tag>
+      
+    </tags>
     
   </entry>
   
@@ -21,9 +233,21 @@
     <link href="/2023/03/29/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/"/>
     <url>/2023/03/29/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/</url>
     
-    <content type="html"><![CDATA[<p>由于某些原因睡不着交，头脑有没有完全清醒，所以现在写一下题解。</p><p><img src="http://rs5kgysfr.hn-bkt.clouddn.com/AJ%24%5DLS%287%7BG9NZMS6BG722%295.png"></p><ol><li><p>看到上传点首先简单尝试下<img src="http://rs5kgysfr.hn-bkt.clouddn.com/_%24SA%5BZVAFECV%40%25GQ7%29LQNIL.png"><br>先开始尝试文件，上面显示文件类型危险，然后想到了图片上传发现可以.</p><p><img src="http://rs5kgysfr.hn-bkt.clouddn.com/DE5I0%25%60%60M%28T1IR2T71E3SK1.png"><br>所以我们试一试图片马上传，首先制作一张图片马进行上传发现不行，这里我简单的尝试了一下，发现假如去掉php的话就上传成功，应该进行了一次内容上的过滤。</p></li><li><p>不过后面发现可以进行段标签绕过，并且后缀名可以改成.php.进行绕过,但是不能访问，所以我们尝试短标签绕过，写入一句话木马<?= eval($_POST['cmd']); ?>发现可以上传，其作用和<?php eval($_POST['cmd'])?>作用一样，当然我们需要在前面加上GIF89a来进行欺骗</p></li><li><p>接下来就要尝试包含该图片的文件了，首先尝试》.htaccess文件发现不行，然后查询资料可以找到.user.ini文件可以达到相同的效果，我们在里面写入auto_prepend_file&#x3D;a.jpg,上传成功后寻找上传的地址<img src="http://rs5kgysfr.hn-bkt.clouddn.com/%5BJ%7B4F%5DGCU%25WUE%40GE%29O%5D72%29W.png"></p></li><li><p>最后用蚁剑或者菜刀连接即可找到</p><p>这道题整体整理下吧，首先发现常规方法不行，于是上传图片马，使用.user.ini文件包含漏洞，这里还需要使用到GIF89a绕过第二次防护</p></li></ol>]]></content>
+    <content type="html"><![CDATA[<p>由于某些原因睡不着交，头脑有没有完全清醒，所以现在写一下题解。</p><p><img src="http://rs5kgysfr.hn-bkt.clouddn.com/AJ%24%5DLS%287%7BG9NZMS6BG722%295.png"></p><ol><li><p>看到上传点首先简单尝试下<img src="http://rs5kgysfr.hn-bkt.clouddn.com/_%24SA%5BZVAFECV%40%25GQ7%29LQNIL.png"><br>先开始尝试文件，上面显示文件类型危险，然后想到了图片上传发现可以.</p><p><img src="http://rs5kgysfr.hn-bkt.clouddn.com/DE5I0%25%60%60M%28T1IR2T71E3SK1.png"><br>所以我们试一试图片马上传，首先制作一张图片马进行上传发现不行，这里我简单的尝试了一下，发现假如去掉php的话就上传成功，应该进行了一次内容上的过滤。</p></li><li><p>不过后面发现可以进行短标签绕过，并且后缀名可以改成.php.进行绕过,但是不能访问，所以我们尝试短标签绕过，写入一句话木马<?= eval($_POST['cmd']); ?>发现可以上传，其作用和<?php eval($_POST['cmd'])?>作用一样，当然我们需要在前面加上GIF89a来进行欺骗</p></li><li><p>接下来就要尝试包含该图片的文件了，首先尝试.htaccess文件发现不行，然后查询资料可以找到.user.ini文件可以达到相同的效果，我们在里面写入auto_prepend_file&#x3D;a.jpg,上传成功后寻找上传的地址<img src="http://rs5kgysfr.hn-bkt.clouddn.com/%5BJ%7B4F%5DGCU%25WUE%40GE%29O%5D72%29W.png"></p></li><li><p>最后用蚁剑或者菜刀连接即可找到</p><p>这道题整体整理下吧，首先发现常规方法不行，于是上传图片马，使用.user.ini文件包含漏洞，这里还需要使用到GIF89a绕过第二次防护</p></li></ol>]]></content>
     
     
+    <categories>
+      
+      <category>ctf</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>文件上传</tag>
+      
+    </tags>
     
   </entry>
   
@@ -34,9 +258,21 @@
     <link href="/2023/03/27/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A11/"/>
     <url>/2023/03/27/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A11/</url>
     
-    <content type="html"><![CDATA[<ol><li><p>代码审计这一块刚起步不够熟练，将这几天做的代码审计总结一下<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/S%7D5UHN%294Q%24%40MX_9%28CLAM%29V1.png"><br>1.这里会获取两个变量a和b，首先会对a进行判断是否存在，然后获取整数值与6000000作比较，而且长度需要小于或者等于3<br>首先对a进行构造，这里需要想到科学计数法，这里直接写a&#x3D;1e7即为1*10^7</p><p>2.接下来对b进行分析，首先对b进行判断是否存在，这里用到了函数substr(pos,n)和md5()，md5()将b进行加密，substr(md5($b),-6,-6)指将其md5加密值取最后6位这里我们直接构造一个b让其md5为8b184b。<br>（这里需要注意pos-是起始位置且默认为0，n-是截取的长度）</p><p><img src="http://rs5kgysfr.hn-bkt.clouddn.com/%286%5D~M%60%5B772%605WOJ7R%28E22%250.png"></p><p>1.这里就对c进行构造了首先json_decode()将获取到的值进行解码,然后array()函数将其强制转换为数组，并赋值给c，类似于这个例子<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/Z86%243Y%25L85R%7BI%7B%60~5%7B9%24K2I.png"></p><p>在这个例子中，json_decode()函数将JSON字符串解码为一个PHP数组，并将其赋值给$data变量。然后可以使用print_r()函数打印数组的内容。</p><p>2.接下来判断数组c中的变量m是否为数字，值是否大于2022，这里要求不是数字且值大于2022<img src="http://rs5kgysfr.hn-bkt.clouddn.com/3A873E1882476833C08DAC57963A695C.jpg"><br>3.判断数组c中变量n是否为数组，且该数组中名为n的数组有两个值，第一个值为也为数组这里好构造<br>4.$d &#x3D; array_search(“DGGJ”, $c[“n”]);<br>   $d &#x3D;&#x3D;&#x3D; false?die(“no…”):NULL;<br>这两个代码让人头痛，首先n中必须有DGGJ，且不能为本身，所以我们应该想办法绕过，这里偷懒借用大佬的图片<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/%7B4G2A~8EQ%24SV5%60_8%60LW4B7Q.png"><br>所以我们需要在数组c中添加0即可<br>最后构造payload?a&#x3D;1e9&amp;b&#x3D;53724&amp;c&#x3D;{“m”:”2023a”,”n”:[[0],0]}</p></li><li><p>终于到了第二个代码审计了（JS），上图！</p><p><img src="http://rs5kgysfr.hn-bkt.clouddn.com/6S~91ZVP%5D6MELW8%285VW~271.png"></p><p>一开始看的我头痛，不过还是耐着性子慢慢的看。<br>1.定义了两个变量pass和tab，pass不必多说，pass_enc是一个需要我们输入的字符串，并且通过split(‘,’)将该字符串隔开并且以数组的形式输出，并且将值赋给tab，同理将pass也变成包含字符串的数组赋值给tab2.<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/8D%282Q6EET%7D%25W3J~1FVWO%60M0.png"></p><p>2.String.fromCharCode()<br>这里是将字符串转化成unicode对应的编码（Unicode 是一种字符编码标准，它为每个字符分配了一个唯一的数字，称为“码位”（code point）。Unicode 包括了世界上几乎所有的书写系统所使用的字符，可以表示几乎所有语言的文字。）<br>经过一系列的运算最后输出了<br>786OsErtk12<br>FAUX PASSWORD HAHA<br>结果应该是上面第一个值</p></li><li><p>第三个代码审计了，感觉代码审计真的折寿</p></li></ol>]]></content>
+    <content type="html"><![CDATA[<ol><li><p>代码审计这一块刚起步不够熟练，将这几天做的代码审计总结一下<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/S%7D5UHN%294Q%24%40MX_9%28CLAM%29V1.png"><br>1.这里会获取两个变量a和b，首先会对a进行判断是否存在，然后获取整数值与6000000作比较，而且长度需要小于或者等于3<br>首先对a进行构造，这里需要想到科学计数法，这里直接写a&#x3D;1e7即为1*10^7</p><p>2.接下来对b进行分析，首先对b进行判断是否存在，这里用到了函数substr(pos,n)和md5()，md5()将b进行加密，substr(md5($b),-6,-6)指将其md5加密值取最后6位这里我们直接构造一个b让其md5为8b184b。<br>（这里需要注意pos-是起始位置且默认为0，n-是截取的长度）</p><p><img src="http://rs5kgysfr.hn-bkt.clouddn.com/%286%5D~M%60%5B772%605WOJ7R%28E22%250.png"></p><p>(1)这里就对c进行构造了首先json_decode()将获取到的值进行解码,然后array()函数将其强制转换为数组，并赋值给c，类似于这个例子<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/Z86%243Y%25L85R%7BI%7B%60~5%7B9%24K2I.png"></p><p>在这个例子中，json_decode()函数将JSON字符串解码为一个PHP数组，并将其赋值给$data变量。然后可以使用print_r()函数打印数组的内容。</p><p>(2)接下来判断数组c中的变量m是否为数字，值是否大于2022，这里要求不是数字且值大于2022<img src="http://rs5kgysfr.hn-bkt.clouddn.com/3A873E1882476833C08DAC57963A695C.jpg"><br>(3)判断数组c中变量n是否为数组，且该数组中名为n的数组有两个值，第一个值为也为数组这里好构造<br>(4)$d &#x3D; array_search(“DGGJ”, $c[“n”]);<br>   $d &#x3D;&#x3D;&#x3D; false?die(“no…”):NULL;<br>这两个代码让人头痛，首先n中必须有DGGJ，且不能为本身，所以我们应该想办法绕过，这里偷懒借用大佬的图片<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/%7B4G2A~8EQ%24SV5%60_8%60LW4B7Q.png"><br>所以我们需要在数组c中添加0即可<br>最后构造payload?a&#x3D;1e9&amp;b&#x3D;53724&amp;c&#x3D;{“m”:”2023a”,”n”:[[0],0]}</p></li><li><p>终于到了第二个代码审计了（JS），上图！</p><p><img src="http://rs5kgysfr.hn-bkt.clouddn.com/6S~91ZVP%5D6MELW8%285VW~271.png"></p><p>一开始看的我头痛，不过还是耐着性子慢慢的看。<br>(1)定义了两个变量pass和tab，pass不必多说，pass_enc是一个需要我们输入的字符串，并且通过split(‘,’)将该字符串隔开并且以数组的形式输出，并且将值赋给tab，同理将pass也变成包含字符串的数组赋值给tab2.<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/8D%282Q6EET%7D%25W3J~1FVWO%60M0.png"></p><p>(2)String.fromCharCode()<br>这里是将字符串转化成unicode对应的编码（Unicode 是一种字符编码标准，它为每个字符分配了一个唯一的数字，称为“码位”（code point）。Unicode 包括了世界上几乎所有的书写系统所使用的字符，可以表示几乎所有语言的文字。）<br>经过一系列的运算最后输出了<br>786OsErtk12<br>FAUX PASSWORD HAHA<br>结果应该是上面第一个值</p></li><li><p>第三个代码审计了，感觉代码审计真的折寿</p></li></ol>]]></content>
     
     
+    <categories>
+      
+      <category>ctf</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>代码审计</tag>
+      
+    </tags>
     
   </entry>
   
@@ -47,8 +283,14 @@
     <link href="/2023/03/26/easy-web/"/>
     <url>/2023/03/26/easy-web/</url>
     
-    <content type="html"><![CDATA[<p>这几天做了很多ctf在这里我总结一下经验吧</p><ol><li>robots协议<br>Robots协议(也称为爬虫协议，机器人协议)，网络通过Robots协议告诉搜索引擎哪些页面可以抓取，哪些不可以抓取。想查看一个网站的robots协议直接在网址后面加上robots.txt即可<br>我们访问<a href="https://example.com/robots.txt%E5%8D%B3%E5%8F%AF%E7%9C%8B%E5%88%B0f1ag_1s_h3re.php%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E8%AF%A5%E8%B7%AF%E5%BE%84%E7%B2%98%E8%B4%B4%E5%88%B0%E7%BD%91%E5%9D%80%E5%90%8E%E9%9D%A2%E5%8D%B3%E5%8F%AF%E5%8F%91%E7%8E%B0flaghttps://example.com/f1ag_1s_h3re.php">https://example.com/robots.txt即可看到f1ag_1s_h3re.php文件，将该路径粘贴到网址后面即可发现flaghttps://example.com/f1ag_1s_h3re.php</a><br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/WUE9SHEL%60NE9%60%29%40%5DD7HG890.png" alt="avatar"></li><li>backup文件<br>在网页的修改中，需要对网页文件名进行备份修改。此时就需要对网站整站或者其中某一站或者某一页进行备份，常见备份文件后缀名有.svn  .swp  .svn  .~  .bak  .bash_history，如果给我们一个文件添加前面所给后缀即可看见备份，给我们一个index.php我们添加后缀.bak即可，如index.php.bak。</li><li>Cookie<br>当我们访问网站时，cookie（通常是很小的文本文件，由字母，数字和唯一的ID组成）就会被下载到我们的计算机当中，我们可以将cookie当作钥匙，下次登录网站时不用输入密码即可登入网页。cookie一般都在request当中，所以当有cookie信息时，我们查看请求信息即可<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/SR%7DME4Z%5B%29C147%252B3HNPD%290.png"></li><li>GET和POST请求<br>GET请求放在url当中，所以隐私性较差，请求数据长度是有限的。<a href="http://example.com/%E8%BE%93%E5%85%A5%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E7%9A%84%E5%86%85%E5%AE%B9%E5%8D%B3%E4%B8%BAget%E8%AF%B7%E6%B1%82">http://example.com/输入需要输入的内容即为get请求</a><br>POST请求没有长度限制，请求数据在body中<br>如以get请求输入a&#x3D;1，以post请求输入b&#x3D;2<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/A91ECFD1DC54191D8E8A31FCA0A8264F.png" alt="avatar"></li><li>xff和referer<br>X-Forwarded-For是一个HTTP扩展头，主要让Web服务器访问用户真实的IP地址<br>Referer作用:如果我在<a href="http://www.sojson.com里面有一个www.baidu.com连接，那么点击这个www.baidu.com,它的header显示的是:Referer=https://www.sojson.com">www.sojson.com里面有一个www.baidu.com连接，那么点击这个www.baidu.com,它的header显示的是:Referer=https://www.sojson.com</a><br>Referer:是HTTP请求header的一部分,比如我只允许我自己的网站访问自己的图片服务器，那么我的域名是<a href="http://www.sojson.com,那么图片服务器每次取到referer来判断一下是不是我自己的域名www.sojson.com,如果是就继续访问,如果不是则拦截./">www.sojson.com，那么图片服务器每次取到Referer来判断一下是不是我自己的域名www.sojson.com，如果是就继续访问，如果不是则拦截。</a></li></ol>]]></content>
+    <content type="html"><![CDATA[<p>这几天做了很多ctf在这里我总结一下经验</p><ol><li>robots协议<br>Robots协议(也称为爬虫协议，机器人协议)，网络通过Robots协议告诉搜索引擎哪些页面可以抓取，哪些不可以抓取。想查看一个网站的robots协议直接在网址后面加上robots.txt即可<br>我们访问<a href="https://example.com/robots.txt%E5%8D%B3%E5%8F%AF%E7%9C%8B%E5%88%B0f1ag_1s_h3re.php%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B0%86%E8%AF%A5%E8%B7%AF%E5%BE%84%E7%B2%98%E8%B4%B4%E5%88%B0%E7%BD%91%E5%9D%80%E5%90%8E%E9%9D%A2%E5%8D%B3%E5%8F%AF%E5%8F%91%E7%8E%B0flaghttps://example.com/f1ag_1s_h3re.php">https://example.com/robots.txt即可看到f1ag_1s_h3re.php文件，将该路径粘贴到网址后面即可发现flaghttps://example.com/f1ag_1s_h3re.php</a><br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/WUE9SHEL%60NE9%60%29%40%5DD7HG890.png" alt="avatar"></li><li>backup文件<br>在网页的修改中，需要对网页文件名进行备份修改。此时就需要对网站整站或者其中某一站或者某一页进行备份，常见备份文件后缀名有.svn  .swp  .svn  .~  .bak  .bash_history，如果给我们一个文件添加前面所给后缀即可看见备份，给我们一个index.php我们添加后缀.bak即可，如index.php.bak。</li><li>Cookie<br>当我们访问网站时，cookie（通常是很小的文本文件，由字母，数字和唯一的ID组成）就会被下载到我们的计算机当中，我们可以将cookie当作钥匙，下次登录网站时不用输入密码即可登入网页。cookie一般都在request当中，所以当有cookie信息时，我们查看请求信息即可<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/SR%7DME4Z%5B%29C147%252B3HNPD%290.png"></li><li>GET和POST请求<br>GET请求放在url当中，所以隐私性较差，请求数据长度是有限的。<a href="http://example.com/%E8%BE%93%E5%85%A5%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E7%9A%84%E5%86%85%E5%AE%B9%E5%8D%B3%E4%B8%BAget%E8%AF%B7%E6%B1%82">http://example.com/输入需要输入的内容即为get请求</a><br>POST请求没有长度限制，请求数据在body中<br>如以get请求输入a&#x3D;1，以post请求输入b&#x3D;2<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/A91ECFD1DC54191D8E8A31FCA0A8264F.png" alt="avatar"></li><li>xff和referer<br>X-Forwarded-For是一个HTTP扩展头，主要让Web服务器访问用户真实的IP地址<br>Referer作用:如果我在<a href="http://www.sojson.com里面有一个www.baidu.com连接，那么点击这个www.baidu.com,它的header显示的是:Referer=https://www.sojson.com">www.sojson.com里面有一个www.baidu.com连接，那么点击这个www.baidu.com,它的header显示的是:Referer=https://www.sojson.com</a><br>Referer:是HTTP请求header的一部分,比如我只允许我自己的网站访问自己的图片服务器，那么我的域名是<a href="http://www.sojson.com,那么图片服务器每次取到referer来判断一下是不是我自己的域名www.sojson.com,如果是就继续访问,如果不是则拦截./">www.sojson.com，那么图片服务器每次取到Referer来判断一下是不是我自己的域名www.sojson.com，如果是就继续访问，如果不是则拦截。</a></li></ol>]]></content>
     
+    
+    <categories>
+      
+      <category>ctf</category>
+      
+    </categories>
     
     
   </entry>
