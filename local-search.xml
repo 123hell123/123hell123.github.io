@@ -4,6 +4,48 @@
   
   
   <entry>
+    <title>IDA简单使用方法</title>
+    <link href="/2023/04/22/IDA%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"/>
+    <url>/2023/04/22/IDA%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<p>IDA帮助进行逆向分析的工具，接下来介绍一下简单的使用方法<br>shift+F12    可以打开string窗口，一键找出所有字符串<br>F5                反编译成C语言</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>ctf</category>
+      
+      <category>逆向</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>IDA</tag>
+      
+      <tag>逆向</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>windows提权</title>
+    <link href="/2023/04/14/windows%E6%8F%90%E6%9D%83/"/>
+    <url>/2023/04/14/windows%E6%8F%90%E6%9D%83/</url>
+    
+    <content type="html"><![CDATA[<p>Windows提权</p><ol><li><p>windows基本知识<br>windows不同的用户有着不同的权限，权限主要包括：完全控制、修改、读取和执行、列出文件夹内容、读取、写入<br>超级管理员和system权限最高<br><strong>内置用户</strong><br>Administrator，系统管理员账号，拥有完全控制权<br>guest，来宾账号，提供访问共享资源的网络用户使用，仅具有基本权限，默认被禁用<br><img src="http://rs5kgysfr.hn-bkt.clouddn.com/L%24C0L%25PF9J~QJFYLO~T5SHU.png"><br>基本命令<br>net user 查看本地用户<br>net user administrator 查看用户详细信息<br>net localgroup  查看本地组 组分为管理组(Administrator)、普通用户组(user)、iis用户组(IIS_IUSRS)、来宾组(Guests)、远程登录组(Remote Desktop)<br><strong>用户信息</strong><br>whoami 命令<br>whoami &#x2F;all</p></li><li><p>windows的sid详解<br>Windows安全性要依赖于几个基本元素。：访问令牌、SID、安全描述符、访问控制列表、密码。<br>访问令牌：访问令牌的内容和功能由用户的SID、登录SID、用户特权、默认所有者、默认组SID、默认DACL、起源进程、令牌类型、模拟级别、受限SID。<br>权限：一个用户进程在接触一个对象时，“安全性参考监视器”将访问令牌中的SID与“对象访问控制列表（ACL）”中的SID匹配。可能出现的两种情况：1、如果没有匹配，就拒绝用户访问，这称为“隐式拒绝访问”2、如果有一个区配，就将与ACK中的条目关联的权限授予给用户。这可能是Allow，也可能是Deny权限。在两个权限都直接派给对象的前提下，Deny权限将优先于Allow权限</p></li><li><p>漏洞提权<br>webshell根据不同的中间件，权限也有所不同，如果没有经过特殊处理，webshell的权限是继承该中间件的权限<img src="http://rs5kgysfr.hn-bkt.clouddn.com/B%24AE1WF7OP4OV86Q6TG3%5DLT.png"></p></li><li><p>提权常见的方法<br>windows的常用提权方法，主要分为漏洞提权、Windows特性提权、第三方组件提权，数据库提权ftp<br>提权命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">提权常用命令systeminfo | findstr OS <span class="hljs-comment">#获取系统版本信息</span><br>hostname <span class="hljs-comment">#获取主机名称</span><br><span class="hljs-built_in">whoami</span> /all <span class="hljs-comment">#获取当前用户的详细信息</span><br><span class="hljs-built_in">whoami</span> /priv <span class="hljs-comment">#显示当前用户安全特权</span><br>net staet <span class="hljs-comment">#查看服务</span><br>quser or query <span class="hljs-comment">#获取在线用户</span><br>netstat -ano | findstr 3389  <span class="hljs-comment">#获取rdp连接来源IP</span><br><span class="hljs-built_in">dir</span> c:\programdata\ <span class="hljs-comment">#分析安装杀软</span><br></code></pre></td></tr></table></figure><p>windows提权流程<br>能够执行cmd命令-&gt;是否打补丁-&gt;补丁对应的exp-&gt;获取服务器权限</p></li><li><p>MS16-075(烂土豆)提权原理<br>攻击者诱骗用户尝试使用NTLM对他的计算机进行身份验证，则他可以将该身份验证尝试中继到另一台计算机！<br>Microsoft通过使用已经进行的质询来禁止同协议NTLM身份验证来对比进行修补。这意味着从一主机回到自身SMB-&gt;SMB NTLM中继将不再起作用。但是，跨协议攻击（例如HTTP-&gt;SMB）仍然可以起作用。</p><p>通俗解释：<br>1、我们控制HTTP流量大概都流经我们控制的HTTP服务器，做中介人攻击<br>2、可以诱导系统高权用户执行一些操作，例如将它们重定向到需要NTLM身份验证的地方。所有NTLM凭据都将中继到本地SMB侦听器，以创建运行用户定义的命令的新系统服务，例如是windows updata服务请求时，就会是一个高权限令牌，劫持掉这个令牌<br>3、最后模仿这个高权限令牌。只有具有“模仿安全令牌权限”的账户才能去模仿别人的令牌<br><strong>烂土豆提权也被称为“令牌复制”（Token Duplication）攻击。</strong></p></li></ol>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>php伪协议</title>
     <link href="/2023/04/05/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/"/>
     <url>/2023/04/05/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/</url>
@@ -210,7 +252,7 @@
     <link href="/2023/04/03/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E/"/>
     <url>/2023/04/03/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E/</url>
     
-    <content type="html"><![CDATA[<p>OWASP十大漏洞</p><p>1、SQL注入<br>2、失效身份验证和会话管理<br>3、跨脚本攻击<br>4、失效的访问控制<br>5、安全配置错误<br>6、敏感信息泄露<br>7、跨站请求伪造<br>8、中间件漏洞</p><p>SQL注入<br>基本注入方式<br>SQL注入分类<br>1、可联合查询注入<br>2、堆叠查询<br>3、布尔型注入<br>4、报错注入<br>5、基于时间延迟注入</p><p>接受请求类型区分<br>1、GET注入<br>2、POST注入<br>3、COOKIE注入<br>注入数据<br>1、数字注入<br>2、字符型注入<br>3、搜索型注入</p><p>SQL注入原理<br>参数用户可控：从前端传给后端的参数内容用户是可控的<br>参数代入数据库查询：传入的参数拼接到SQL语句，且代入数据库查询。</p><p>SQL注入常规利用思路<br>1、寻找注入点，可以通过web扫描工具实现<br>2、通过注入点，尝试获得关于数据库用户名、数据库名称、连接数据库权限<br>3、猜测关键数据库表及其字段与内容<br>4、利用信息获取用户信息，寻找后台登陆。</p><p>SQL注入防御<br>1、预编译语句<br>2、函数过滤转义<br>2、限制数据类型</p><p>文件上传漏洞<br>程序员没有对上传文件进行严格过滤或者验证，而导致用户上传越过其本身权限向服务器上传可执行脚本。</p><p>上传方法<br>1、未作任何过滤直接上传文件<br>2、改写后缀名<br>3、绕过黑名单<br>4、空格绕过上传<br>5、双写后缀名绕过</p><p>防御方法<br>1、服务器启动白名单防御<br>2、修复中间件漏洞<br>3、限制后缀名<br>4、禁止客户端存在可控参数</p><p>XSS漏洞<br>用户将恶意的代码植入到web网站里面，供给其他用户访问，当用户访问到有恶意的代码，网页就会产生xss攻击</p><p>XSS类型分类<br>1、反射型XSS<br>2、存储型XSS<br>3、dom型XSS</p><p>XSS防御总体思路是：对提交的所有内容进行过滤，对url中的参数进行过滤，过滤掉脚本执行的相关内容；然后对动态输出到页面进行html编码，使得脚本无法在浏览器中执行</p><p>CSRF漏洞原理<br>用户登录网站A，登录成功后服务器向用户浏览器发送cookie，此时用户并没有退出网站A，同时登录网站B，网站B收到用户请求返回恶意代码攻击网站A，网站A认为此操作是已授权的用户执行的，从而导致网站B的恶意代码被执行</p><p>CSRF防御方案<br>1、增加token验证<br>2、增加验证码<br>3、访问控制安全管理（修改敏感信息需要二次验证）</p>]]></content>
+    <content type="html"><![CDATA[<p>OWASP十大漏洞</p><p>1、SQL注入<br>2、失效身份验证和会话管理<br>3、跨脚本攻击<br>4、失效的访问控制<br>5、安全配置错误<br>6、敏感信息泄露<br>7、跨站请求伪造<br>8、中间件漏洞</p><p>SQL注入<br>基本注入方式<br>SQL注入分类<br>1、可联合查询注入<br>2、堆叠查询<br>3、布尔型注入<br>4、报错注入<br>5、基于时间延迟注入</p><p>接受请求类型区分<br>1、GET注入<br>2、POST注入<br>3、COOKIE注入<br>注入数据<br>1、数字注入<br>2、字符型注入<br>3、搜索型注入</p><p>SQL注入原理<br>参数用户可控：从前端传给后端的参数内容用户是可控的<br>参数代入数据库查询：传入的参数拼接到SQL语句，且代入数据库查询。</p><p>SQL注入常规利用思路<br>1、寻找注入点，可以通过web扫描工具实现<br>2、通过注入点，尝试获得关于数据库用户名、数据库名称、连接数据库权限<br>3、猜测关键数据库表及其字段与内容<br>4、利用信息获取用户信息，寻找后台登陆。</p><p>SQL注入防御<br>1、预编译语句<br>2、函数过滤转义<br>2、限制数据类型</p><p>文件上传漏洞<br>程序员没有对上传文件进行严格过滤或者验证，而导致用户上传越过其本身权限向服务器上传可执行脚本。</p><p>上传方法<br>1、未作任何过滤直接上传文件<br>2、改写后缀名<br>3、绕过黑名单<br>4、空格绕过上传<br>5、双写后缀名绕过</p><p>防御方法<br>1、服务器启动白名单防御<br>2、修复中间件漏洞<br>3、限制后缀名<br>4、禁止客户端存在可控参数</p><p>XSS漏洞<br>用户将恶意的代码植入到web网站里面，供给其他用户访问，当用户访问到有恶意的代码，网页就会产生xss攻击</p><p>XSS类型分类<br>1、反射型XSS<br>2、存储型XSS<br>3、dom型XSS</p><p>XSS防御总体思路是：对提交的所有内容进行过滤，对url中的参数进行过滤，过滤掉脚本执行的相关内容；然后对动态输出到页面进行html编码，使得脚本无法在浏览器中执行</p><p>CSRF漏洞原理<br>用户登录网站A，登录成功后服务器向用户浏览器发送cookie，此时用户并没有退出网站A，同时登录网站B，网站B收到用户请求返回恶意代码攻击网站A，网站A认为此操作是已授权的用户执行的，从而导致网站B的恶意代码被执行</p><p>CSRF防御方案<br>1、增加token验证<br>2、增加验证码<br>3、访问控制安全管理（修改敏感信息需要二次验证）</p><p>SSRF漏洞原理<br>SSRF形成的大多数原因是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。<br>例如，黑客操作服务端从指定的URL地址获取网页文本内容，加载指定地址的图片等，利用的是服务端的请求伪造</p><p>SSRF防御方案<br>1、禁止跳转<br>2、禁止不需要的协议，仅仅允许http和https请求。<br>3、限制端口</p><p>XXE漏洞原理<br>由于程序在解析输入的XML数据时，解析了攻击者伪造的外部实体而产生的漏洞</p><p>XXE漏洞防御<br>1、禁用外部实体的方法<br>2、过滤用户提交的XML数据</p>]]></content>
     
     
     <categories>
