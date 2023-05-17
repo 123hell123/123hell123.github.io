@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>serialize攻防世界</title>
-    <link href="/2023/05/17/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"/>
-    <url>/2023/05/17/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</url>
+    <title>serialize3攻防世界</title>
+    <link href="/2023/05/17/serialize%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/"/>
+    <url>/2023/05/17/serialize%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h4 id="serialize3攻防世界"><a href="#serialize3攻防世界" class="headerlink" title="serialize3攻防世界"></a><strong>serialize3攻防世界</strong></h4><p><img src="/img/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cunserialize31.png" srcset="/img/loading.gif" lazyload><br>这个题首先观察发现?code，猜测是我们需要控制变量名$flag且控制变量值为111</p><p><img src="/img/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cunserialize32.png" srcset="/img/loading.gif" lazyload></p><p>进行攻击载荷构造 O:4:”xctf”:1:{s:4:”flag”;s:3:”111”;}<br>将变量个数1改为2可以绕过wakeup函数</p><p><img src="/img/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cunserialize33.png" srcset="/img/loading.gif" lazyload></p><p>成功攻击</p>]]></content>
     
     
     <categories>
