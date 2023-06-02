@@ -16,22 +16,25 @@
   <meta name="author" content="Zheng Yi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="OSI七层模型应用层表示层会话层传输层网络层数据链路层物理层常见的端口http 80(超文本传输协议)  https 443(以安全为目的http安全通道) FTP 21(文件传输协议)  SMTP 25(邮件传输协议)  文件共享 SMB 445   ssh 22(加密登录) 1433mssql  3306 Mysql  6379 redis 7001Weblogic TCP协议为什么时可靠的T">
+    <meta name="description" content="跨站请求伪造CSRFcsrf漏洞描述CSRF 定义： 跨站请求伪造（英语：Cross-site request forgery），也被称为 one-click attack 或者session riding，通常缩写为 CSRF ， 是一种挟制用户在当前已登录的 Web 应用程序上执行非本意的操作的攻击方法。简单地说，是攻击者通过一些技术手段欺骗用户的浏览器去访问一个自己曾经认证过的网站并执行一些">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络">
-<meta property="og:url" content="http://example.com/2023/04/03/%E7%BD%91%E7%BB%9C/index.html">
+<meta property="og:title" content="CSRF漏洞">
+<meta property="og:url" content="http://example.com/2023/05/31/CSRF%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name" content="ZizZy&#39;s blog">
-<meta property="og:description" content="OSI七层模型应用层表示层会话层传输层网络层数据链路层物理层常见的端口http 80(超文本传输协议)  https 443(以安全为目的http安全通道) FTP 21(文件传输协议)  SMTP 25(邮件传输协议)  文件共享 SMB 445   ssh 22(加密登录) 1433mssql  3306 Mysql  6379 redis 7001Weblogic TCP协议为什么时可靠的T">
+<meta property="og:description" content="跨站请求伪造CSRFcsrf漏洞描述CSRF 定义： 跨站请求伪造（英语：Cross-site request forgery），也被称为 one-click attack 或者session riding，通常缩写为 CSRF ， 是一种挟制用户在当前已登录的 Web 应用程序上执行非本意的操作的攻击方法。简单地说，是攻击者通过一些技术手段欺骗用户的浏览器去访问一个自己曾经认证过的网站并执行一些">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-03T07:10:29.000Z">
-<meta property="article:modified_time" content="2023-06-02T02:11:41.691Z">
+<meta property="og:image" content="http://example.com/img/csrf1.png">
+<meta property="og:image" content="http://example.com/img/scrf2.png">
+<meta property="article:published_time" content="2023-05-31T00:50:07.000Z">
+<meta property="article:modified_time" content="2023-05-31T01:16:03.718Z">
 <meta property="article:author" content="Zheng Yi">
-<meta property="article:tag" content="面试">
+<meta property="article:tag" content="CSRF">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/csrf1.png">
   
   
   
-  <title>网络 - ZizZy&#39;s blog</title>
+  <title>CSRF漏洞 - ZizZy&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="网络"></span>
+            <span id="subtitle" data-typed-text="CSRF漏洞"></span>
           
         </div>
 
@@ -208,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-03 15:10" pubdate>
-          2023年4月3日 下午
+        <time datetime="2023-05-31 08:50" pubdate>
+          2023年5月31日 早上
         </time>
       </span>
     
@@ -220,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          236 字
+          697 字
         
       </span>
     
@@ -231,7 +234,7 @@
         
         
         
-          2 分钟
+          6 分钟
         
       </span>
     
@@ -269,13 +272,14 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">网络</h1>
+            <h1 style="display: none">CSRF漏洞</h1>
             
             
               <div class="markdown-body">
                 
-                <p>OSI七层模型<br>应用层<br>表示层<br>会话层<br>传输层<br>网络层<br>数据链路层<br>物理层<br>常见的端口<br>http 80(超文本传输协议)  https 443(以安全为目的http安全通道) FTP 21(文件传输协议)  SMTP 25(邮件传输协议)  文件共享 SMB 445   ssh 22(加密登录) 1433mssql  3306 Mysql  6379 redis 7001Weblogic</p>
-<p>TCP协议为什么时可靠的<br>TCP是基于连接的，在进行数据传输前要先进行三次握手建立连接<br>UDP协议<br>收发协议不需要建立连接，而且没有TCP协议中的ACK确认</p>
+                <h2 id="跨站请求伪造CSRF"><a href="#跨站请求伪造CSRF" class="headerlink" title="跨站请求伪造CSRF"></a>跨站请求伪造CSRF</h2><h3 id="csrf漏洞描述"><a href="#csrf漏洞描述" class="headerlink" title="csrf漏洞描述"></a>csrf漏洞描述</h3><p>CSRF 定义： 跨站请求伪造（英语：Cross-site request forgery），也被称为 one-click attack 或者<br>session riding，通常缩写为 CSRF ， 是一种挟制用户在当前已登录的 Web 应用程序上执行非本意的操作<br>的攻击方法。<br>简单地说，是攻击者通过一些技术手段欺骗用户的浏览器去访问一个自己曾经认证过的网站并执行一些操<br>作（如发邮件，发消息，甚至财产操作如转账和购买商品）。由于浏览器曾经认证过，所以被访问的网站<br>会认为是真正的用户操作而去执行。这利用了 web 中用户身份验证的一个漏洞：简单的身份验证只能保证<br>请求发自某个用户的浏览器，却不能保证请求本身是用户自愿发出的。</p>
+<h3 id="csrf漏洞攻击原理"><a href="#csrf漏洞攻击原理" class="headerlink" title="csrf漏洞攻击原理"></a>csrf漏洞攻击原理</h3><p>1、用户打开浏览器，访问登陆受信任的 A 网站<br>2、在用户信息通过验证后，服务器会返回一个 cookie 给浏览器，用户登陆网站 A 成功，可以正常发送请求到网站 A<br>3、用户未退出网站 A，在同一浏览器中，打开一个危险网站 B<br>4、网站 B 收到用户请求后，返回一些恶意代码，并发出请求要求访问网站 A<br>5、浏览器收到这些恶意代码以后，在用户不知情的情况下，利用 cookie 信息，向网站 A 发送恶意请求，网站<br>6、A 会根据 cookie 信息以用户的权限去处理该请求，导致来自网站 B 的恶意代码被执行</p>
+<h3 id="CSRF漏洞攻击"><a href="#CSRF漏洞攻击" class="headerlink" title="CSRF漏洞攻击"></a>CSRF漏洞攻击</h3><p>打开 pichachu 靶场来到 csrf（get）漏洞，输入用户登录后发现修改密码处没有任何验证，存在 csrf 攻<br>击，通过 csrf 漏洞攻击修改资料。<br>我们使用burpsuite进行抓包，然后点击 generate csrf-poc即可构造exp<br><img src="/img/csrf1.png" srcset="/img/loading.gif" lazyload><br><img src="/img/scrf2.png" srcset="/img/loading.gif" lazyload><br>新建.html复制到其中，点击即可触发攻击</p>
 
                 
               </div>
@@ -294,7 +298,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%AE%A1%E7%BD%91/" class="category-chain-item">计网</a>
+  <a href="/categories/web%E5%AE%89%E5%85%A8/" class="category-chain-item">web安全</a>
   
   
 
@@ -309,7 +313,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+        <a href="/tags/CSRF/">#CSRF</a>
       
     </div>
   
@@ -321,8 +325,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>网络</div>
-      <div>http://example.com/2023/04/03/网络/</div>
+      <div>CSRF漏洞</div>
+      <div>http://example.com/2023/05/31/CSRF漏洞/</div>
     </div>
     <div class="license-meta">
       
@@ -334,7 +338,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月3日</div>
+          <div>2023年5月31日</div>
         </div>
       
       
@@ -366,9 +370,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/03/TCP-IP%E5%8D%8F%E8%AE%AE/" title="TCP/IP协议">
+                      <a href="/2023/05/31/SSRF%E6%BC%8F%E6%B4%9E/" title="SSRF漏洞">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">TCP/IP协议</span>
+                        <span class="hidden-mobile">SSRF漏洞</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -376,8 +380,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/03/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" title="应急响应">
-                        <span class="hidden-mobile">应急响应</span>
+                      <a href="/2023/05/30/%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E5%92%8C%E7%88%B6%E7%BA%A7%E7%9B%AE%E5%BD%95/" title="当前目录和父级目录">
+                        <span class="hidden-mobile">当前目录和父级目录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
