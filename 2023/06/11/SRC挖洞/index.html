@@ -1,0 +1,740 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatat.png">
+  <link rel="icon" href="/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zheng Yi">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="信息搜集信息搜集常见的问题1、搜集类型单一、往往跑完子域名后就结束了2、信息源缺乏，不知道如何获取优秀的数据源，找不到隐蔽性高的资产3、人工处理信息，流程繁琐，效率不高 工商数据的搜集工商数据可以帮助测试人员更好的了解目标公司的信息，以便收敛测试的目标范围。例如，可以通过工商数据获取公司的控股子公司、经营业务、对外发布的产品等信息，这些信息可以帮助我们更准确的识别出目标公司的网络资产，以便对其进行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SRC挖洞">
+<meta property="og:url" content="http://example.com/2023/06/11/SRC%E6%8C%96%E6%B4%9E/index.html">
+<meta property="og:site_name" content="ZizZy&#39;s blog">
+<meta property="og:description" content="信息搜集信息搜集常见的问题1、搜集类型单一、往往跑完子域名后就结束了2、信息源缺乏，不知道如何获取优秀的数据源，找不到隐蔽性高的资产3、人工处理信息，流程繁琐，效率不高 工商数据的搜集工商数据可以帮助测试人员更好的了解目标公司的信息，以便收敛测试的目标范围。例如，可以通过工商数据获取公司的控股子公司、经营业务、对外发布的产品等信息，这些信息可以帮助我们更准确的识别出目标公司的网络资产，以便对其进行">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/SRC1.png">
+<meta property="og:image" content="http://example.com/img/SRC2.png">
+<meta property="article:published_time" content="2023-06-11T08:10:22.000Z">
+<meta property="article:modified_time" content="2023-07-07T05:18:30.109Z">
+<meta property="article:author" content="Zheng Yi">
+<meta property="article:tag" content="挖洞">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/SRC1.png">
+  
+  
+  
+  <title>SRC挖洞 - ZizZy&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/tiger.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SRC挖洞"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-11 16:10" pubdate>
+          2023年6月11日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          48 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SRC挖洞</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><h2 id="信息搜集常见的问题"><a href="#信息搜集常见的问题" class="headerlink" title="信息搜集常见的问题"></a>信息搜集常见的问题</h2><p>1、搜集类型单一、往往跑完子域名后就结束了<br>2、信息源缺乏，不知道如何获取优秀的数据源，找不到隐蔽性高的资产<br>3、人工处理信息，流程繁琐，效率不高</p>
+<h2 id="工商数据的搜集"><a href="#工商数据的搜集" class="headerlink" title="工商数据的搜集"></a>工商数据的搜集</h2><p>工商数据可以帮助测试人员更好的了解目标公司的信息，以便收敛测试的目标范围。例如，可以通过工商数据获取公司的控股子公司、经营业务、对外发布的产品等信息，这些信息可以帮助我们更准确的识别出目标公司的网络资产，以便对其进行更有效的漏洞挖掘</p>
+<h3 id="工商数据"><a href="#工商数据" class="headerlink" title="工商数据"></a>工商数据</h3><p><strong>信息来源：</strong>爱企查、企业查、天眼查、启信宝、小蓝本<br><strong>关注内容：</strong><br>1、企业股权架构<br>2、网站备案号<br>3、对外公布的产品（小程序、公众号、APP、iot设备）<br>4、法人电话号、邮箱<br><strong>用处：</strong><br>1、获取控股子公司名称，收集边缘子公司资产（50%以上控股公司都算有效范围）<br>2、获取备案根域名<br>3、获取其他互联网资产<br>4、收集用户名等信息</p>
+<h2 id="域名信息搜集"><a href="#域名信息搜集" class="headerlink" title="域名信息搜集"></a>域名信息搜集</h2><h3 id="根域名获取"><a href="#根域名获取" class="headerlink" title="根域名获取"></a>根域名获取</h3><p><strong>备案域名</strong></p>
+<p>ICP备案号反差<br>whois数据搜集</p>
+<p><strong>未备案域名</strong></p>
+<p>ssl证书查询<br>lco Hash查询<br>网站响应头<br>网站页脚<br>DNS解析数据</p>
+<h3 id="子域名收集"><a href="#子域名收集" class="headerlink" title="子域名收集"></a>子域名收集</h3><p><strong>主动搜集</strong></p>
+<p>子域名爆破<br>1、subDOmainBrute<br>2、子域名挖掘机Layer<br>3、<a target="_blank" rel="noopener" href="https://github.com/FeeiCN/ESD">https://github.com/FeeiCN/ESD</a><br>4、puredns</p>
+<p>爬虫</p>
+<p><strong>被动搜集</strong></p>
+<p>搜索引擎<br>1、百度、谷歌、必应<br>2、fofa、zomomeeye<br>3、github</p>
+<p>第三方数据源<br>1、微步<br>2、VirusTotal<br>3、Censys<br>4、dnsdb<br>5、binaryedge<br>6、crt.sh</p>
+<p>工具<br>1、subfinder<br>2、brup流量</p>
+<p>文件泄露<br>1、跨域策略文件crossdomain.xml<br>2、站点地图sitemap.xml<br>3、robts.txt<br>4、Apk包<br>5、小程序源码</p>
+<p><strong>结合类的工具</strong><br>1、Oneforall<br>2、xray<br>3、ARL资产灯塔</p>
+<h1 id="端口渗透"><a href="#端口渗透" class="headerlink" title="端口渗透"></a>端口渗透</h1><h2 id="什么是端口服务"><a href="#什么是端口服务" class="headerlink" title="什么是端口服务"></a>什么是端口服务</h2><p>端口，又称为连接端口、端口、协议端口在电脑网络中是一种经由软件创建的服务，在一个电脑操作系统中扮演通信的端点<br><strong>常见的端口</strong><br>21、22、23、25、53、80等<br><strong>常见端口服务可利用点</strong><br>1、组件默认端口<br>2、高位服务端口<br><strong>端口服务漏洞价值</strong><br>在常规的src漏洞挖掘中端口服务很容易被忽略，更多的人是盯着一些web站点来进行漏洞挖掘，一些高位服务端口依旧是可以拿到高位严重漏洞的</p>
+<h2 id="常见端口服务"><a href="#常见端口服务" class="headerlink" title="常见端口服务"></a>常见端口服务</h2><p><img src="/img/SRC1.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="web服务类端口"><a href="#web服务类端口" class="headerlink" title="web服务类端口"></a>web服务类端口</h3><p>web服务类端口一般都会涉及到组件了，很多组件都会有默认开放端口，例如我们熟悉的k8s（8080、6443），weblogic（7001），kibana（5601）等<br><img src="/img/SRC2.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="数据库端口服务"><a href="#数据库端口服务" class="headerlink" title="数据库端口服务"></a>数据库端口服务</h3><p>1、Mysql<br>在正常拿到注入点后、如果该数据库为mysql，我们可以进一步利用，很大概率能够getshell的<br>2、MongDB<br>在进行端口服务识别后，很多人在看到MongDB数据库后会直接忽略不管，该数据库存在未授权访问的<br>3、influxdb<br>这一个数据库是无法获取shell的，但是我们可以来对数据库进行增删改查夸大危害性<br>4、redis<br>redis未授权直接提交给src大概率会被评级为中或者高危，我们可以利用一些手段来进行shell的</p>
+<h1 id="端口渗透-组件渗透"><a href="#端口渗透-组件渗透" class="headerlink" title="端口渗透-组件渗透"></a>端口渗透-组件渗透</h1><h1 id="前端安全漏洞"><a href="#前端安全漏洞" class="headerlink" title="前端安全漏洞"></a>前端安全漏洞</h1><h2 id="响应码"><a href="#响应码" class="headerlink" title="响应码"></a>响应码</h2><p>200：OK - 成功<br>302：Found - 跳转<br>400：Bad Request - 错误请求<br>401：UNAUTHORIZED - 当前用户未授权<br>403：Forbidden - 禁止访问<br>404：Not Found - 未找到<br>405：Method Not Allowed - 请求方法不允许<br>415：Unsupported Media Type - 不支持的Content-Type<br>500：Internal Server Error - 服务器错误<br>502：Bad Gateway - 错误的网关<br>504：Gateway Timeout - 请求超时</p>
+<h2 id="XSS-漏洞"><a href="#XSS-漏洞" class="headerlink" title="XSS - 漏洞"></a>XSS - 漏洞</h2><p>反射性xss<br>需要将触发点发送至目标用户 - 低危<br>请求方式：GET、POST型<br>常见参数：url、keyword、各类请求参数</p>
+<p>存储型xss</p>
+<ul>
+<li>文件上传导致的存储型xss（上传至存储桶） - 低危</li>
+<li>文件上传导致的存储型xss - 中危</li>
+<li>需要将触发页面发送给目标用户的 - 中危、低危</li>
+<li>受众较广的发帖功能、发送信息功能 - 中危及以上</li>
+<li>能够威胁到管理后台、管理员 - 高危</li>
+</ul>
+<h2 id="前端框架安全"><a href="#前端框架安全" class="headerlink" title="前端框架安全"></a>前端框架安全</h2><p>高风险：Webpack打包器前端直接展示<br>中风险：Source map源码泄露<br>低风险：以上两个不存在，仅有JavaScript文件</p>
+<h2 id="HTML注释"><a href="#HTML注释" class="headerlink" title="HTML注释"></a>HTML注释</h2><p>常用的注释格式是<!--注释内容 -->，很多语言都支持这种注释，开发人员可能在注释内容中透露一些敏感信息，例如：&lt;!-  测试账号：admin 123456    –&gt;</p>
+<p>Javascript注释<br>单行注释：&#x2F;&#x2F;注释内容<br>多行注释：&#x2F;<em>注释内容</em>&#x2F;</p>
+<h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><ul>
+<li><p>什么是Webpack，目前许多大型应用(如大型java Web应用)就要求前端必须要有独立的项目，独立的项目想要足够的效率就必须进行工程化。</p>
+</li>
+<li><p>具有复杂数据状态的应用开发过程就必须要有合适的框架，采用数据驱动开发的方式增强可维护性</p>
+</li>
+<li><p>复杂项目结构必须进行模块化管理，一来提高部分公共内容的可复用性而来增强团队并行协作能力</p>
+</li>
+<li><p>重复规律性的工作必须采用自动化工具实现，以来提高效率，二来避免人为出错</p>
+<p>等</p>
+</li>
+</ul>
+<h3 id="Webpack文件"><a href="#Webpack文件" class="headerlink" title="Webpack文件"></a>Webpack文件</h3><p><strong>含有Webpack文件特征</strong><br>webpackJsonp、sourceMappingURL、js.map</p>
+<p>webpack:&#x2F;&#x2F;&#x2F;(webpack)&#x2F;buildin-全局文件、打包配置文件<br>webpack:&#x2F;&#x2F;&#x2F;node_modules目录-打包的各类前端代码依赖库<br><strong>webpack:&#x2F;&#x2F;&#x2F;src目录-核心打包后代码，每个文件包含不同功能</strong></p>
+<ul>
+<li>API - 各功能模块的各种接口</li>
+<li>Assets - 静态资源文件</li>
+<li>Common - 公共资源文件</li>
+<li>Entity - 前端功能组件</li>
+<li>Router - 实例</li>
+<li>Store - 功能路由表</li>
+<li>Utils - 软件开发工具包</li>
+<li>Views - 前端视图文件</li>
+</ul>
+<h2 id="Javacript安全风险"><a href="#Javacript安全风险" class="headerlink" title="Javacript安全风险"></a>Javacript安全风险</h2><p><strong>JS中的各种环境信息</strong><br>开发环境、测试环境、生产环境</p>
+<p><strong>开发云平台密钥id&#x2F;secret</strong><br>app_id： 是应用的唯一标识。在创建应用时，由系统生成，用户不能自行修改。可以在开发者后台的凭证与基础信息页面查看 app_id.<br>app_secret：是应用的密钥。在创建应用时，由系统自动生成，在调用API时，需要将其作为请求参数之一，用户可以在开发者后台的凭证与基础信息页面查询或重置密钥<br><strong>云存储的密钥ak&#x2F;sk</strong><br>与开发者密钥类似，控制云存储服务的密钥对，一般为：assessKeyld、accessKeySecret<br><strong>泄露Author作者署名信息</strong><br>利用此类标识信息，进行信息搜集、搜索引擎信息泄露、GitHub信息泄露的进一步利用<br><strong>内部IP泄露</strong><br>测试IP地址泄露、内部IP地址泄露能够导致进一步漏洞危害<br><strong>编辑器漏洞</strong><br>ueditor.config.js编辑器此类编辑器的配置JavaScript文件，说明Web应用使用了特定的编辑器，通常此类编辑器存在通用的漏洞</p>
+<h1 id="常见漏洞场景分析利用"><a href="#常见漏洞场景分析利用" class="headerlink" title="常见漏洞场景分析利用"></a>常见漏洞场景分析利用</h1><h2 id="XSS漏洞的常见触发场景及利用"><a href="#XSS漏洞的常见触发场景及利用" class="headerlink" title="XSS漏洞的常见触发场景及利用"></a>XSS漏洞的常见触发场景及利用</h2><p><strong>XSS类型</strong><br>存储型<br>页面或数据库保存了攻击的恶意代码，除非对应记录被删除，否则可以一直触发xss<br>反射型<br>反射型反射性即服务器根据用户当前输入做出的响应，只能触发一次，并且立马可以看到js执行的效果<br>Dom型<br>特殊的反射型xss。dom xss的payload不需要服务端解析响应，而是靠浏览器的dom解析，因此dom-xss的触发时抓不到请求包的。</p>
+<h4 id="XSS漏洞的常见触发场景"><a href="#XSS漏洞的常见触发场景" class="headerlink" title="XSS漏洞的常见触发场景"></a><strong>XSS漏洞的常见触发场景</strong></h4><p><strong>重灾区</strong><br>1、评论区、留言区、客服聊天框<br>2、个人信息设置、后台参数配置<br>3、文件上传：html、svg、xml、pdf</p>
+<p><strong>针对区</strong><br>1、支持markdown语法编辑器<br>2、历史记录查询<br>3、富文本编辑器<br>4、取值写入页面：Refer、Cookie</p>
+<p><strong>存在风险</strong><br>1、数据查询搜索页面<br>2、意见反馈、客服投诉<br>3、跳转功能、各种伪协议<br>4、输入框功能</p>
+<h4 id="文件上传与xss的结合"><a href="#文件上传与xss的结合" class="headerlink" title="文件上传与xss的结合"></a>文件上传与xss的结合</h4><p>很多后台会拦截一些特殊的文件后缀，比如aspx、php、jsp、aspx一类的，虽然大部分无法直接上传webshell，但其实很多文件是可以执行js代码从而触发xss的</p>
+<p><strong>PDF文件上传触发xss</strong></p>
+<p>利用条件<br>1、上传点允许.pdf后缀的文件上传<br>2、保存好的pdf文件可以直接浏览器查看，而不是只能下载至本地</p>
+<p>使用如下脚本可以生成带有xss代码的pdf文件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">from</span> <span class="hljs-title class_">PyPDF2</span> <span class="hljs-keyword">import</span> <span class="hljs-title class_">PdfFileWriter</span><br>file=<span class="hljs-title class_">PdfFileWriter</span>()<br>file.<span class="hljs-title function_">addJS</span>(<span class="hljs-string">&#x27;app.alert(&quot;XSS&quot;);&#x27;</span>)<br>output=<span class="hljs-title function_">open</span>(<span class="hljs-string">&#x27;xss.pdf&#x27;</span>,<span class="hljs-string">&#x27;wb&#x27;</span>)<br>file.<span class="hljs-title function_">write</span>(output)<br></code></pre></td></tr></table></figure>
+
+<p><strong>html文件上传触发xss</strong><br>利用条件：<br>1、上传点允许.html后缀的文件上传<br>2、保存好的html文件有执行权限</p>
+<p>上传最常用的payload</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>alert(1)<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>SVG文件上传触发xss<br>利用条件<br>1、上传点允许.svg后缀的文件上传<br>2、保存好的svg文件有执行权限<br>成因：<br>SVG是支持通过脚本语言来动态访问和修改SVG的任何内容，这点和HTML中的dom有点类似，或者说完全一致。因为SVG中的所有标签和属性都已经对应了已经定义的DOM，而这种脚本语言就是Javascript，所以我们在SVG中插入JavaScript脚本是完全能够被解析的。<br>总之XSS能够被执行是因为遵循了svg及xml的标准，使得脚本代码的执行</p>
+<h2 id="CORS、jsonp跨域漏洞"><a href="#CORS、jsonp跨域漏洞" class="headerlink" title="CORS、jsonp跨域漏洞"></a>CORS、jsonp跨域漏洞</h2><p>什么是跨域<br>1、同源策略规定不同域的客户端脚本如果没有明确授权允许执行，不能读写另一方的资源，同协议，同端口，同主机的两个URL才能被认为同源<br>2、web前后端分离模式的流行，后端开发写完业务功能的代码后需要提供接口给前端用，开发者们又设计出了CORS、jsonp等方式来完成跨域请求</p>
+<h4 id="CORS、jsonp漏洞的常见触发场景"><a href="#CORS、jsonp漏洞的常见触发场景" class="headerlink" title="CORS、jsonp漏洞的常见触发场景"></a><strong>CORS、jsonp漏洞的常见触发场景</strong></h4><p><strong>重灾区</strong><br>1、前后端分离，前端调用后接口<br>2、非主营业务需要调用主站用户的账号信息，并将数据显示出来<br>3、加载第三方网站上的图片，css样式，js等资源</p>
+<p><strong>针对性</strong><br>1、电商行业需要从第三方物流公司调用运单详情<br>2、本地开发程序时，本地文件夹不是域名下面，要测试接口功能时可能需要发送ajax请求</p>
+<p><strong>存在风险</strong><br>1、所有相应包中存在Access-Control-Allow-Origin响应头的请求<br>2、带有callback、cb等回调函数名称的接口</p>
+<h4 id="CORS跨域漏洞"><a href="#CORS跨域漏洞" class="headerlink" title="CORS跨域漏洞"></a><strong>CORS跨域漏洞</strong></h4><p>1、CORS，跨域资源共享（Cross-origin resource sharing），这种机制通过添加HTTP字段的方式规定服务器资源允许被哪些域访问（Access-Control-Allow-Origin）、请求中是否允许发送cookie（Access-Control-Allow-Credentials）、哪些请求类型是被允许的（Access-Control-Request-Method）等等<br>2、最重要的是Access-Control-Allow-Origin标头，当这一字段设置为*时表示服务器资源允许被任何域访问，当然如果需要请求用户信息这类的资源，cookie也是必须被带上的，所以Access-Control-Allow-Credentials字段值要设置成true。但是当如果配置成Access-Control-Allow-Origin:*Access-Control-Allow-Credentials:true，这种会被浏览器默认禁止导致无法利用。<br>3、如果将Origin请求头改为evil.cn，响应头中有Access-Control-Allow-Origin头，并且允许evil.cn读取cookie访问服务器资源，这类配置往往是存在跨域配置错误且最好利用的。<br>4、综上所述，不难发现CORS跨域漏洞出现的请求包特征，brup中可以自动添加Origin头去寻找CORS配置错误，勾选默认配置（history中筛选带有cors配置错误特征即可）</p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>1、讲了哪几个漏洞<br>2、什么场景会出现这种漏洞<br>3、漏洞利用原理</p>
+<h2 id="任意文件读取"><a href="#任意文件读取" class="headerlink" title="任意文件读取"></a>任意文件读取</h2><p>任意文件读取漏洞需要注意数据包的传参并且参数是可控制的，而不是仅仅关注功能点，有传参的地方都有可能造成任意文件读取。<br>我们发现可控参数后可以尝试目录遍历，例如文件上传有时候会回显相关信息，文件预览则可以尝试控制传参，遍历不同的文件</p>
+<h2 id="XXE漏洞"><a href="#XXE漏洞" class="headerlink" title="XXE漏洞"></a>XXE漏洞</h2><p>xxe漏洞也称为外部实体注入，类似于SQL注入，通过让服务器执行传恶意代码从而达到目的<br>xxe基本格式</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">&lt;?<span class="hljs-type">xml</span> version=&quot;1.0&quot;&gt;&lt;!DOCTYPE 根元素[!DOCTYPE 实体名称 <span class="hljs-keyword">SYSTEM</span> &quot;URL&quot;]&gt;<br></code></pre></td></tr></table></figure>
+
+<p>通常我们通过寻找数据包中是否存在xml特征，从而进行判断是否可以进行xxe攻击<br>我们可以利用dnslog快速判断是否攻击成功</p>
+<h2 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h2><p>任何存在url的地方都可能存在SSRF漏洞，需要多关注响应包<br>支持的协议http https gopher dict file<br>也可以使用dnslog外带数据</p>
+<p>SSRF漏洞如果拦截了内网地址如何绕过<br>1、“@”符号绕过<br><a target="_blank" rel="noopener" href="http://www.baidu.com@10.10.10.10与http//10.10.10.10%E8%AF%B7%E6%B1%82%E6%98%AF%E7%9B%B8%E5%90%8C%E7%9A%84%E3%80%82">http://www.baidu.com@10.10.10.10与http://10.10.10.10请求是相同的。</a><br>2、点分割符号替换<br>在浏览器中可以使用不同的分割符号来代替域名中的.分割，可以使用。、、．来代替：<br>3、IP的进制转换</p>
+<p>任意文件读取有哪些getshell思路</p>
+<p>存储桶权限配置错误会出现目录遍历，我们可以获得各种文件，通常我们可以在数据包里面发现key这种关键字即可进行尝试<br>存储桶劫持通过fofa指纹发现被删除后，但是并未删除解析记录，即可进行尝试创建相同名称的存储桶进行劫持<br>云密钥泄露则是通过使用burpsuite插件进行流量过滤发现关键字是否泄露了云密钥<br>利用SSRF进行内网横向探测，探测不同的</p>
+<p>如果文件上传至存储桶，此时没有对文件名进行验证或者上传相同文件名的文件，会造成什么漏洞<br>会造成文件上传，可以getshell</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/SRC/" class="category-chain-item">SRC</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8C%96%E6%B4%9E/">#挖洞</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SRC挖洞</div>
+      <div>http://example.com/2023/06/11/SRC挖洞/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zheng Yi</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/06/16/XXE%E6%BC%8F%E6%B4%9E/" title="XXE漏洞">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">XXE漏洞</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/05/SQLMAP/" title="SQLMAP">
+                        <span class="hidden-mobile">SQLMAP</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

